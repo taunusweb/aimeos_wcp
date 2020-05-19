@@ -31,7 +31,7 @@ class Carrier
 		$search = $manager->createSearch()->setSlice( 0 , 1 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
-			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', 'carrier'], null ) )
+			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', 'carrier'] ), null )
 		] ) );
 
 		return count( $manager->searchItems( $search ) ) ? $this->getProvider()->isAvailable( $basket ) : false;
