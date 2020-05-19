@@ -51,11 +51,15 @@ class CustomerPay
 	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket )
 	{
 		$context = $this->getContext();
-		$item = \Aimeos\MShop::create( $context, 'customer' )->getItem( $context->getUserId(), ['customer/property'] );
-		$option = current( $item->getProperties( 'payment' ) );
 
-		if( $option && $option !== $this->getConfigValue( 'customerpay.payment' ) ) {
-			return false;
+		if( $context->getUserId() )
+		{
+			$item = \Aimeos\MShop::create( $context, 'customer' )->getItem( $context->getUserId(), ['customer/property'] );
+			$option = current( $item->getProperties( 'payment' ) );
+
+			if( $option && $option !== $this->getConfigValue( 'customerpay.payment' ) ) {
+				return false;
+			}
 		}
 
 		return $this->getProvider()->isAvailable( $basket );
