@@ -22,7 +22,7 @@ return array(
 		'admin/jqadm/src',
 	),
 	'i18n' => array(
-		'admin' => 'admin/i18n',
+/*		'admin' => 'admin/i18n',
 		'admin/jsonadm' => 'admin/jsonadm/i18n',
 		'client' => 'client/i18n',
 		'client/code' => 'client/i18n/code',
@@ -30,7 +30,7 @@ return array(
 		'controller/frontend' => 'controller/frontend/i18n',
 		'controller/jobs' => 'controller/jobs/i18n',
 		'mshop' => 'lib/custom/i18n',
-	),
+*/	),
 	'config' => array(
 		'config',
 	),
