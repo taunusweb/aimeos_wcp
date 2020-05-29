@@ -65,7 +65,7 @@ class Bulky
 		$search = $manager->createSearch()->setSlice( 0 , 10000 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
-			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', 'bulky'] ), null )
+			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'bulky'] ), null )
 		] ) );
 		$products = $manager->searchItems( $search );
 
