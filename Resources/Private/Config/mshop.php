@@ -13,7 +13,7 @@ return [
 			'name' => 'Solr',
 		]
 	],
-        'price' => [
-                'taxflag' => 0,
-        ],
+	'price' => [
+		'taxflag' => 0,
+	],
 ];
