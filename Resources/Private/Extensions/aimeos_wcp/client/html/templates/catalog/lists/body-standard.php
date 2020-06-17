@@ -123,14 +123,6 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
 	<?= $this->block()->get( 'catalog/lists/promo' ); ?>
 
 
-	<?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
-		<div class="catalog-list-type">
-			<a class="type-item type-grid" href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'grid' ) + $params, [], $config ) ); ?>"></a>
-			<a class="type-item type-list" href="<?= $enc->attr( $this->url( $target, $cntl, $action, array( 'l_type' => 'list' ) + $params, [], $config ) ); ?>"></a>
-		</div>
-	<?php endif; ?>
-
-
 	<?= $pagination; ?>
 
 
