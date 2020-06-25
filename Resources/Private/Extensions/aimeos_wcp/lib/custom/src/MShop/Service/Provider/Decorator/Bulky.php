@@ -80,4 +80,22 @@ class Bulky
 		$price = $this->getProvider()->calcPrice( $basket );
 		return $price->setCosts( $price->getCosts() + $config['bulky.amount'] * $qty );
 	}
+
+
+	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	{
+		$prodIds = [];
+		foreach( $basket->getProducts() as $orderProduct ) {
+			$prodIds[] = $orderProduct->getProductId();
+		}
+
+		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
+		$search = $manager->createSearch()->setSlice( 0 , 1 );
+		$search->setConditions( $search->combine( '&&', [
+			$search->compare( '==', 'product.id', $prodIds ),
+			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'carrier'] ), null )
+		] ) );
+
+		return count( $manager->searchItems( $search ) ) ? false : $this->getProvider()->isAvailable( $basket );
+	}
 }
