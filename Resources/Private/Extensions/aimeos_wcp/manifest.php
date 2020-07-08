@@ -22,6 +22,7 @@ return array(
 		'admin/jqadm/src',
 	),
 	'i18n' => array(
+		'client' => 'client/i18n',
 /*		'admin' => 'admin/i18n',
 		'admin/jsonadm' => 'admin/jsonadm/i18n',
 		'client' => 'client/i18n',

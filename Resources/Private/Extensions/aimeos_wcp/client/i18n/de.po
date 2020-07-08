@@ -1,0 +1,5 @@
+msgid "wcp_oem"
+msgstr "OEM-Nr.:"
+
+msgid "wcp_dimensions"
+msgstr "Abmessungen:"
