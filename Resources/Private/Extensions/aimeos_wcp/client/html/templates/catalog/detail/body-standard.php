@@ -181,10 +181,12 @@ if (isset($this->detailProductItem)) {
 
                     <?php if (isset($this->detailProductItem)) : ?>
                         <div class="price-list">
-                            <div class="articleitem listprice">
-				<span class="label"><?= $enc->html( $this->translate('client', 'List price' ) ) ?></span>
-				<?= ( $p = current( $this->detailProductItem->getRefItems('price', null, 'default') ) ) ? $p->getValue() : null ?>
-                            </div>
+                            <?php if( $this->get( 'contextUserId' ) ) : ?>
+                                <div class="articleitem listprice">
+                                    <span class="label"><?= $enc->html( $this->translate('client', 'List price' ) ) ?></span>
+                                    <?= ( $p = current( $this->detailProductItem->getRefItems('price', null, 'default') ) ) ? $p->getValue() : null ?>
+                                </div>
+                            <?php endif ?>
                             <div class="articleitem price price-actual"
                                  data-prodid="<?= $enc->attr($this->detailProductItem->getId()); ?>"
                                  data-prodcode="<?= $enc->attr($this->detailProductItem->getCode()); ?>">
