@@ -19,6 +19,9 @@ return [
 					'price' => ['default'],
 					'text' => 'text',
 				],
+			],
+			'text' => [
+				'name' => 'Weber'
 			]
 		]
 	],
