@@ -11,6 +11,15 @@ return [
 	'index' => [
 		'manager' => [
 			'name' => 'Solr',
+			'standard' => [
+				'domains' => [
+					'catalog' => 'catalog',
+					'attribute' => 'attribute',
+					'product' => ['default'],
+					'price' => ['default'],
+					'text' => 'text',
+				],
+			]
 		]
 	],
 	'price' => [
