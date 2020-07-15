@@ -20,6 +20,15 @@ return [
 					'text' => 'text',
 				],
 			],
+			'attribute' => [
+				'name' => 'Solr'
+			],
+			'catalog' => [
+				'name' => 'Solr'
+			],
+			'price' => [
+				'name' => 'Solr'
+			],
 			'text' => [
 				'name' => 'Weber'
 			]
