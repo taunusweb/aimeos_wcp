@@ -454,6 +454,7 @@ if (isset($this->detailProductItem)) {
                     <?php endif; ?>
 
                     <?php if (count($propMap) > 0) : ?>
+                    <?php if( $this->get( 'contextUserId' ) ) : ?>
                         <div class="additional-box">
                             <h2 class="header properties"><?= $enc->html($this->translate('client', 'Properties'), $enc::TRUST); ?></h2>
                             <div class="content properties">
@@ -476,6 +477,7 @@ if (isset($this->detailProductItem)) {
                                 </table>
                             </div>
                         </div>
+                        <?php endif; ?>
                     <?php endif; ?>
 
                     <?php $mediaList = $this->get('detailMediaItems', []); ?>
