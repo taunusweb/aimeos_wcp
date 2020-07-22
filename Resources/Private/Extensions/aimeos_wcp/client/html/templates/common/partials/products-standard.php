@@ -135,28 +135,28 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 		<?php
 
 		    $oem = [];
-    $dimensions = "";
-    $material = "";
-    $bristle = "";
-    $listAttributes = $productItem->getListItems('attribute');
-    foreach ($listAttributes as $attrListItems) {
-        if (($attrItem = $attrListItems->getRefItem()) !== null) {
-            if ($attrItem->getType() == "Abmessungen") {
-                $dimensions = $attrItem->getLabel();
-            }
-        }
-        if (($attrItem = $attrListItems->getRefItem()) !== null) {
-            if ($attrItem->getType() == "Materialart") {
-                $material = $attrItem->getLabel();
-            }
-        }
-        if (($attrItem = $attrListItems->getRefItem()) !== null) {
-            if ($attrItem->getType() == "Borste") {
-                $bristle = $attrItem->getLabel();
-            }
-        }
-    }
-    $oem = $productItem->getPropertyItems('OEM-Nr.');
+			$dimensions = "";
+			$material = "";
+			$bristle = "";
+			$listAttributes = $productItem->getListItems('attribute');
+			foreach ($listAttributes as $attrListItems) {
+				if (($attrItem = $attrListItems->getRefItem()) !== null) {
+					if ($attrItem->getType() == "Abmessungen") {
+						$dimensions = $attrItem->getLabel();
+					}
+				}
+				if (($attrItem = $attrListItems->getRefItem()) !== null) {
+					if ($attrItem->getType() == "Materialart") {
+						$material = $attrItem->getLabel();
+					}
+				}
+				if (($attrItem = $attrListItems->getRefItem()) !== null) {
+					if ($attrItem->getType() == "Borste") {
+						$bristle = $attrItem->getLabel();
+					}
+				}
+			}
+			$oem = $productItem->getPropertyItems('OEM-Nr.');
 			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 
 			$disabled = '';
@@ -171,6 +171,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 		--><li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ); ?>"
 			data-reqstock="<?= (int) $this->get( 'require-stock', true ); ?>"
+			data-score="<?= $enc->attr( $productItem->score ) ?>"
 			itemprop="<?= $this->get( 'itemprop' ); ?>"
 			itemtype="http://schema.org/Product"
 			itemscope="" >
