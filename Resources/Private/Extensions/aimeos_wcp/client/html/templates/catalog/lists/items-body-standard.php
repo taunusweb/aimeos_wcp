@@ -50,7 +50,7 @@ $exact = $similar = [];
 
 foreach( $this->get( 'listProductItems', [] ) as $id => $product )
 {
-	if( $product->get( 'score' ) >= 20 ) {
+	if( $product->get( 'score' ) >= 400 ) {
 		$exact[$id] = $product;
 	} else {
 		$similar[$id] = $product;

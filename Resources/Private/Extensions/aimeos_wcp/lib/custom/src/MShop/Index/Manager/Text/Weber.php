@@ -74,13 +74,13 @@ class Weber extends \Aimeos\MShop\Index\Manager\Text\Solr
 
 		$this->searchConfig['index.text:relevance']['function'] = function( &$source, array $params ) {
 
-			$source['bool']['should'][] = 'product.code:' . $params[1] . '^30';
-			$source['bool']['should'][] = 'product.code:' . $params[1] . '*^20';
+			$source['bool']['should'][] = 'product.code:' . $params[1] . '^1000';
+			$source['bool']['should'][] = 'product.code:' . $params[1] . '*^750';
 
-			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $params[1] . ')^14';
-			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $params[1] . '*)^13';
-			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':(' . $params[1] . ')^12';
-			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':(' . $params[1] . '*)^11';
+			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $params[1] . ')^450';
+			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $params[1] . '*)^300';
+			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':(' . $params[1] . ')^150';
+			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':(' . $params[1] . '*)^50';
 
 			return $params;
 		};
