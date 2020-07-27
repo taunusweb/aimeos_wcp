@@ -53,8 +53,8 @@ class Weber extends Base
 			return $params;
 		};
 
-		$this->searchConfig['sort:catalog:relevance']['function'] = $func;
-		$this->searchConfig['catalog:relevance']['function'] = $func;
+		$this->attr['sort:catalog:relevance']['function'] = $func;
+		$this->attr['catalog:relevance']['function'] = $func;
 	}
 
 
