@@ -19,7 +19,7 @@ class Weber extends Base
 		),
 		'sort:catalog:relevance' => array(
 			'code' => 'sort:catalog:relevance()',
-			'internalcode' => 'MATCH( mcat."content" ) AGAINST( $1 IN BOOLEAN MODE )',
+			'internalcode' => 'MATCH( mcat."label" ) AGAINST( $1 IN BOOLEAN MODE )',
 			'label' => 'Category text sorting, parameter(<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,

@@ -1,9 +1,9 @@
 <?php
 
-$cattarget = $this->config( 'client/html/catalog/list/url/target' );
-$catcntl = $this->config( 'client/html/catalog/list/url/controller', 'catalog' );
-$cataction = $this->config( 'client/html/catalog/list/url/action', 'list' );
-$catconfig = $this->config( 'client/html/catalog/list/url/config', [] );
+$cattarget = $this->config( 'client/html/catalog/lists/url/target' );
+$catcntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
+$cataction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
+$catconfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
 $target = $this->config( 'client/html/catalog/detail/url/target' );
 $cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
