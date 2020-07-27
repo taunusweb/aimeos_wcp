@@ -33,7 +33,7 @@ foreach( $this->get( 'suggestCatalogItems', [] ) as $id => $catItem )
 		'label' => $name,
 		'html' => '
 			<li class="aimeos catalog-suggest">
-				<a class="suggest-item" href="' . $enc->attr( $this->url( $cattarget, $catcntl, $cataction, $catparams, [], $catconfig ) ) . '">
+				<a class="suggest-item" href="' . $enc->attr( $this->url( $cattarget, $catcntl, $cataction, $params, [], $catconfig ) ) . '">
 					<div class="item-image" style="background-image: url(' . $enc->attr( $media ) . ')"></div>
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 				</a>

@@ -3,7 +3,7 @@
 return [
 	'catalog' => [
 		'manager' => [
-			'decorator' => [
+			'decorators' => [
 				'local' => [
 					'Weber' => 'Weber'
 				]

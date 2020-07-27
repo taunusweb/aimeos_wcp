@@ -3,26 +3,23 @@
 namespace Aimeos\Client\Html\Catalog\Suggest;
 
 
-class Weber
-	extends Aimeos\Client\Html\Catalog\Suggest\Standard
-	implements \Aimeos\Client\Html\Common\Client\Factory\Iface
+class Weber extends Standard
 {
 	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$text = str_replace( '"', ' ', $view->param( 'f_search' ) );
+		$text = $view->param( 'f_search' );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
 			->text( $text ); // sort by relevance first
 
 		$domains = $config->get( 'client/html/catalog/suggest/domains', ['text', 'media'] );
 		$size = $config->get( 'client/html/catalog/suggest/size', 24 );
-		$lang = $context->getLocale()->getLanguageId();
 
 		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
-			->compare( '!=', 'catalog:relevance("' . $lang . '","' . $text . '")', null )
-			->sort( 'sort:catalog:relevance("' . $lang . '","' . $text . '")' )
+			->compare( '>', 'catalog:relevance("' . str_replace( '"', ' ', $text ) . '")', 0.7 )
+			->sort( '-sort:catalog:relevance("' . str_replace( '"', ' ', $text ) . '")' )
 			->slice( 0, $size )->search();
 
 		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )
