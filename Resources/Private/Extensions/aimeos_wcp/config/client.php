@@ -8,6 +8,9 @@ return [
                 'domains' => [
                         'media', 'price', 'text', 'product/property', 'attribute'
                 ],
+            ],
+            'suggest' => [
+                'name' => 'Weber'
             ]
         ],
         'common' => [
