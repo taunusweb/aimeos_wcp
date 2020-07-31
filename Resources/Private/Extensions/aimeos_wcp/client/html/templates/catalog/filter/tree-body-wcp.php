@@ -14,8 +14,8 @@ $counts = $this->config( 'client/html/catalog/count/enable', true );
 $currentLevel=0;
 $name = '';
 if( ( $node = end( $path ) ) !== false ) {
-	$name = $node->getName();
-	$currentLevel = $node->getLevel();
+    $name = $node->getName();
+    $currentLevel = $node->getLevel();
 }
 
 $listTarget = $this->config( 'client/html/catalog/lists/url/target' );
@@ -59,28 +59,28 @@ $enforce = $this->config( 'client/html/catalog/filter/tree/force-search', false 
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
 <section class="<?= ( $counts == true ? 'catalog-filter-count' : '' ); ?>">
 
-	<?php if( $enforce ) : ?>
+    <?php if( $enforce ) : ?>
 		<input type="hidden"
-			name="<?= $enc->attr( $this->formparam( array( 'f_catid' ) ) ); ?>"
-			value="<?= $enc->attr( $this->param( 'f_catid' ) ); ?>"
+			   name="<?= $enc->attr( $this->formparam( array( 'f_catid' ) ) ); ?>"
+			   value="<?= $enc->attr( $this->param( 'f_catid' ) ); ?>"
 		/>
-	<?php endif; ?>
+    <?php endif; ?>
 
-	<?php if( isset( $params['f_catid'] ) ) : unset( $params['f_catid'], $params['f_name'] ); ?>
+    <?php if( isset( $params['f_catid'] ) ) : unset( $params['f_catid'], $params['f_name'] ); ?>
 		<div class="category-selected">
 			<span class="selected-intro"><?= $enc->html( $this->translate( 'client', 'Your choice' ), $enc::TRUST ); ?></span>
-			<a class="selected-category" href="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $params, [], $listConfig ) ); ?>">
-				<?= $enc->html( $name, $enc::TRUST ); ?>
+			<a class="selected-category" href="javascript:history.back()">
+                <?= $enc->html( $name, $enc::TRUST ); ?>
 			</a>
 		</div>
-	<?php endif; ?>
+    <?php endif; ?>
 
-	<?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 ) : ?>
-		<?= $this->partial(
-			$this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-wcp' ),
-			array( 'nodes' => array( $this->treeCatalogTree ), 'path' => $path, 'params' => $this->get( 'treeFilterParams', [] ), 'currentLevel' => $currentLevel )
-		); ?>
-	<?php endif; ?>
+    <?php if( isset( $this->treeCatalogTree ) && $this->treeCatalogTree->getStatus() > 0 ) : ?>
+        <?= $this->partial(
+            $this->config( 'client/html/catalog/filter/partials/tree', 'catalog/filter/tree-partial-wcp' ),
+            array( 'nodes' => array( $this->treeCatalogTree ), 'path' => $path, 'params' => $this->get( 'treeFilterParams', [] ), 'currentLevel' => $currentLevel )
+        ); ?>
+    <?php endif; ?>
 
 </section>
 <?php $this->block()->stop(); ?>

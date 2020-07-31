@@ -50,11 +50,11 @@ $exact = $similar = [];
 
 foreach( $this->get( 'listProductItems', [] ) as $id => $product )
 {
-	if( $product->get( 'score' ) >= 400 ) {
-		$exact[$id] = $product;
-	} else {
-		$similar[$id] = $product;
-	}
+    if( $product->get( 'score' ) >= 400 ) {
+        $exact[$id] = $product;
+    } else {
+        $similar[$id] = $product;
+    }
 }
 
 
@@ -62,31 +62,30 @@ foreach( $this->get( 'listProductItems', [] ) as $id => $product )
 <?php $this->block()->start( 'catalog/lists/items' ); ?>
 <div class="catalog-list-items" data-infinite-url="<?= $infiniteUrl ?>">
 
-	<?= $this->partial(
-		$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-		array(
-			'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
-			'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
-			'productItems' => $this->get( 'itemsProductItems', [] ),
-			'products' => $exact,
-			'position' => $this->get( 'itemPosition' ),
-		)
-	); ?>
+    <?= $this->partial(
+        $this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
+        array(
+            'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
+            'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
+            'productItems' => $this->get( 'itemsProductItems', [] ),
+            'products' => $exact,
+            'position' => $this->get( 'itemPosition' ),
+        )
+    ); ?>
 
-	<?php if( !empty( $similar ) ) : ?>
-		<h2>Ähnliche Produkte</h2>
+    <?php if( !empty( $similar ) ) : ?>
 
-		<?= $this->partial(
-			$this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
-			array(
-				'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
-				'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
-				'productItems' => $this->get( 'itemsProductItems', [] ),
-				'products' => $similar,
-				'position' => $this->get( 'itemPosition' ),
-			)
-		); ?>
-	<?php endif ?>
+        <?= $this->partial(
+            $this->config( 'client/html/common/partials/products', 'common/partials/products-standard' ),
+            array(
+                'require-stock' => (int) $this->config( 'client/html/basket/require-stock', true ),
+                'basket-add' => $this->config( 'client/html/catalog/lists/basket-add', false ),
+                'productItems' => $this->get( 'itemsProductItems', [] ),
+                'products' => $similar,
+                'position' => $this->get( 'itemPosition' ),
+            )
+        ); ?>
+    <?php endif ?>
 
 </div>
 <?php $this->block()->stop(); ?>
