@@ -5,7 +5,7 @@ return [
         'catalog' => [
             'lists' => [
                 'decorators' => [
-                    'default' => ['ListCategories']
+                    'global' => ['ListCategories']
                 ],
                 'levels' => 2,
                 'domains' => [
