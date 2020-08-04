@@ -91,7 +91,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
 			<?php foreach( $this->get( 'listNodes', [] ) as $item ) : ?>
 				<?php if( $item->getStatus() > 0 ) : ?>
 					<?php $id = $item->getId(); $config = $item->getConfig(); ?>
-					<?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; ?>
+					<?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; unset( $params['f_search'] ); ?>
 					<?php $class = ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
 					<div class="<?= $level; ?> <?= $item->getLevel(); ?>  cat-item p-3 catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
 						<a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
