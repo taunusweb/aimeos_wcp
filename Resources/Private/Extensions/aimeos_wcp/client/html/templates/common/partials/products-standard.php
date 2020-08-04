@@ -203,7 +203,11 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 				<div class="text-list">
 					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
-					<h3><?= $enc->html( $productItem->getCode(), $enc::TRUST ); ?></h3>
+
+					<h3>
+						<span class="name"><?= $enc->html($this->translate('client', 'Article no.'), $enc::TRUST); ?>: </span>
+						<?= $enc->html( $productItem->getCode(), $enc::TRUST ); ?>
+					</h3>
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 						<div class="text-item" itemprop="description">
 							<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?><br/>
