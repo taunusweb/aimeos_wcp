@@ -10,20 +10,10 @@ $enc = $this->encoder();
 $params = $this->get( 'listParams', [] );
 $catPath = $this->get( 'listCatPath', [] );
 
-if( $this->param( 'f_catid' ) !== null )
-{
-	$target = $this->config( 'client/html/catalog/tree/url/target' );
-	$cntl = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
-	$action = $this->config( 'client/html/catalog/tree/url/action', 'tree' );
-	$config = $this->config( 'client/html/catalog/tree/url/config', [] );
-}
-else
-{
-	$target = $this->config( 'client/html/catalog/lists/url/target' );
-	$cntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-	$action = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-	$config = $this->config( 'client/html/catalog/lists/url/config', [] );
-}
+$target = $this->config( 'client/html/catalog/tree/url/target' );
+$cntl = $this->config( 'client/html/catalog/tree/url/controller', 'catalog' );
+$action = $this->config( 'client/html/catalog/tree/url/action', 'tree' );
+$config = $this->config( 'client/html/catalog/tree/url/config', [] );
 
 $optTarget = $this->config( 'client/jsonapi/url/target' );
 $optCntl = $this->config( 'client/jsonapi/url/controller', 'jsonapi' );
@@ -41,31 +31,6 @@ foreach( (array) $this->get( 'listCatPath', [] ) as $cat )
 }
 
 
-/** client/html/catalog/lists/head/text-types
- * The list of text types that should be rendered in the catalog list head section
- *
- * The head section of the catalog list view at least consists of the category
- * name. By default, all short and long descriptions of the category are rendered
- * as well.
- *
- * You can add more text types or remove ones that should be displayed by
- * modifying these list of text types, e.g. if you've added a new text type
- * and texts of that type to some or all categories.
- *
- * @param array List of text type names
- * @since 2014.03
- * @category User
- * @category Developer
- */
-$textTypes = $this->config( 'client/html/catalog/lists/head/text-types', array( 'short', 'long' ) );
-
-
-$quoteItems = [];
-if( $catPath !== [] && ( $catItem = end( $catPath ) ) !== false ) {
-	$quoteItems = $catItem->getRefItems( 'text', 'quote', 'default' );
-}
-
-
 /** client/html/catalog/lists/pagination/enable
  * Enables or disables pagination in list views
  *
@@ -80,6 +45,7 @@ if( $catPath !== [] && ( $catItem = end( $catPath ) ) !== false ) {
  * @category Developer
  */
 $pagination = '';
+
 if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catalog/lists/pagination/enable', true ) == true )
 {
 	/** client/html/catalog/lists/partials/pagination
