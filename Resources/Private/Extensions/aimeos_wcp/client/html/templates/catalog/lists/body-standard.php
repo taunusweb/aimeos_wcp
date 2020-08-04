@@ -122,30 +122,28 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
 
 	<?php if( $this->get( 'listNodes', [] ) !== [] ) : ?>
 		<div class="catalog-filter-wcp d-flex flex-wrap  align-content-center mb-3">
-			<ul class="level-<?= $enc->attr( $level ); ?>">
-				<?php foreach( $this->get( 'listNodes', [] ) as $item ) : ?>
-					<?php if( $item->getStatus() > 0 ) : ?>
-						<?php $id = $item->getId(); $config = $item->getConfig(); ?>
-						<?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; ?>
-						<?php $class = ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
-						<div class="<?= $level; ?> <?= $item->getLevel(); ?>  cat-item p-3 catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
-							<a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
-								--><div class="media-list"><!--
+			<?php foreach( $this->get( 'listNodes', [] ) as $item ) : ?>
+				<?php if( $item->getStatus() > 0 ) : ?>
+					<?php $id = $item->getId(); $config = $item->getConfig(); ?>
+					<?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; ?>
+					<?php $class = ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
+					<div class="<?= $level; ?> <?= $item->getLevel(); ?>  cat-item p-3 catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
+						<a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
+							--><div class="media-list"><!--
 
-									<?php foreach( $item->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-										<?= '-->' . $this->partial(
-										$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
-										array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-									) . '<!--'; ?>
-									<?php endforeach; ?>
+								<?php foreach( $item->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+									<?= '-->' . $this->partial(
+									$this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+									array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+								) . '<!--'; ?>
+								<?php endforeach; ?>
 
-								--></div><!--
-								--><span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ); ?></span><!--
-							--></a>
-						</div>
-					<?php endif; ?>
-				<?php endforeach; ?>
-			</ul>
+							--></div><!--
+							--><span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ); ?></span><!--
+						--></a>
+					</div>
+				<?php endif; ?>
+			<?php endforeach; ?>
 		</div>
 	<?php endif ?>
 
