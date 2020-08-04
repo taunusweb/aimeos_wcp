@@ -3,6 +3,11 @@
 return [
     'html' => [
         'catalog' => [
+			'detail' => [
+				'url' => [
+					'filter' => []
+				]
+			],
             'lists' => [
                 'decorators' => [
                     'global' => ['ListCategories']
@@ -12,6 +17,11 @@ return [
                     'media', 'price', 'text', 'product/property', 'attribute'
                 ],
             ],
+			'stock' => [
+				'level' => [
+						'low' => 100
+				]
+            ],
             'suggest' => [
                 'name' => 'Weber'
             ]
@@ -20,6 +30,9 @@ return [
             'decorators' => [
                 'default' => ['Context']
             ],
+			'partials' => [
+				'selection' => 'common/partials/selection-list'
+			]
         ],
     ]
 ];
