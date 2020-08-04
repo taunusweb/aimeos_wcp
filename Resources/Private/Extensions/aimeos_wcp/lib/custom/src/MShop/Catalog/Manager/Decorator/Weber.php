@@ -47,7 +47,7 @@ class Weber extends Base
 					}
 				}
 
-				$params[0] = '\'' . $str . '"' . $search . '"\'';
+				$params[0] = '\'' . $str . '\'';
 			}
 
 			return $params;
