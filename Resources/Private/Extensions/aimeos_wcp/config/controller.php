@@ -4,6 +4,12 @@ return [
     'common' => [
         'media' => [
             'standard' => [
+                'options' => [
+                    'image' => [
+                        'name' => 'Imagick',
+                        'watermark' => dirname(__DIR__) . '/wasserzeichen.png',
+                    ],
+                ],
                 'previews' => [[
                     'maxwidth' => 240,
                     'maxheight' => 180,
