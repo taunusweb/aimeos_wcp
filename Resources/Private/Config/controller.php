@@ -7,7 +7,7 @@ return [
                 'options' => [
                     'image' => [
                         'name' => 'Imagick',
-                        'watermark' => dirname(__DIR__) . '/wasserzeichen.png',
+                        'watermark' => dirname(__DIR__, 2) . '/Public/wasserzeichen.png',
                     ],
                 ],
                 'previews' => [[
