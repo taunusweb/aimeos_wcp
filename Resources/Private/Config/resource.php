@@ -3,9 +3,9 @@
 return [
 	'solr' => [
 		'scheme' => 'https',
-		'host' => '5146153:lxsFGBJeaW9vIJdTXnMvxJJeiOpQCDx5@5146153.solr-02.jweiland.net',
+		'host' => 'solr6269:yJcs67JK@solr6269.solr-hosting.info',
 		'port' => '443',
 		'path' => 'solr',
-		'index' => 'core_de_aimeos_2',
+		'index' => 'default',
 	]
 ];
