@@ -184,7 +184,9 @@ if (isset($this->detailProductItem)) {
                             <?php if( $this->get( 'contextUserId' ) ) : ?>
                                 <div class="articleitem listprice">
                                     <span class="label"><?= $enc->html( $this->translate('client', 'List price' ) ) ?></span>
-                                    <?= ( $p = current( $this->detailProductItem->getRefItems('price', null, 'default') ) ) ? $p->getValue() : null ?>
+                                    <?php  if (($priceItem = current($this->detailProductItem->getRefItems('price', null, 'default'))) !== false) : ?>
+                                        <?= $enc->html(sprintf($this->translate('client/code', 'price:default'), $this->number($priceItem->getValue(), $priceItem->getPrecision()), $this->translate('currency', $priceItem->getCurrencyId())), $enc::TRUST); ?>
+                                    <?php endif ?>
                                 </div>
                             <?php endif ?>
                             <div class="articleitem price price-actual"
