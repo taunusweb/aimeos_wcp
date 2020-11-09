@@ -3,3 +3,6 @@ msgstr "OEM-Nr.:"
 
 msgid "wcp_dimensions"
 msgstr "Abmessungen:"
+
+msgid "wcp_on_request"
+msgstr " auf Anfrage"

@@ -70,7 +70,7 @@ $price = ( $p = current( $prices ) ) ? $p->getValue() : 0;
 		<meta itemprop="priceCurrency" content="<?= $priceItem->getCurrencyId(); ?>" />
 		<meta itemprop="price" content="<?= $priceItem->getValue(); ?>" />
 
-		<span class="quantity" itemscope="" itemtype="http://schema.org/QuantitativeValue">
+        <span class="quantity" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>  itemscope="" itemtype="http://schema.org/QuantitativeValue">
 			<meta itemprop="minValue" content="<?= $priceItem->getQuantity(); ?>" />
 			<?= $enc->html( sprintf( $format['quantity'], $priceItem->getQuantity() ), $enc::TRUST ); ?>
 		</span>
@@ -80,10 +80,10 @@ $price = ( $p = current( $prices ) ) ? $p->getValue() : 0;
 		</span>
 
 		<?php if( $priceItem->getValue() > 0 && $rebate > 0 ) : ?>
-			<span class="rebate">
+			<span class="rebate" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>>
 				<?= $enc->html( sprintf( $format['rebate'], $this->number( $rebate ), $currency ), $enc::TRUST ); ?>
 			</span>
-			<span class="rebatepercent">
+            <span class="rebatepercent" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>>
 				<?= $enc->html( sprintf( $format['rebate%'], $this->number( round( $rebate * 100 / ( $priceItem->getValue() + $rebate ) ), 0 ) ), $enc::TRUST ); ?>
 			</span>
 		<?php endif; ?>
@@ -94,7 +94,7 @@ $price = ( $p = current( $prices ) ) ? $p->getValue() : 0;
 			</span>
 		<?php endif; ?>
 
-		<span class="taxrate">
+        <span class="taxrate" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>>
 			<?= $enc->html( sprintf( $taxformat, $this->number( $priceItem->getTaxrate() ) ), $enc::TRUST ); ?>
 		</span>
 	</div>
