@@ -132,7 +132,7 @@ class XmlWeber
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'customer' );
-		$search = $manager->createSearch()->setSlice( 0, 1 );
+		$search = $manager->createSearch()->setSlice( 0, count( $orders ) );
 		$search->setConditions( $search->compare( '==', 'customer.id', $custIds ) );
 		$customerItems = $manager->searchItems( $search );
 
