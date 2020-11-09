@@ -26,8 +26,8 @@ $custItems = $this->get( 'customerItems', [] );
 
 		<?php if( isset( $baseItems[$item->getBaseId()] ) ) : $baseItem = $baseItems[$item->getBaseId()] ?>
 
-			<?php if( isset( $custItems[$baseItem->getId()] ) ) : ?>
-				<customer.code><![CDATA[<?= $custItems[$baseItem->getId()]->getCode() ?>]]></customer.code>
+			<?php if( isset( $custItems[$baseItem->getCustomerId()] ) ) : ?>
+				<customer.code><![CDATA[<?= $custItems[$baseItem->getCustomerId()]->getCode() ?>]]></customer.code>
 			<?php endif ?>
 
 			<?php foreach( $baseItem->toArray() as $key => $value ) : ?>
