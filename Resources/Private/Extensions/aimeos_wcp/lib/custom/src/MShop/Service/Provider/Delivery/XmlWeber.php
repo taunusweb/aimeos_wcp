@@ -126,8 +126,14 @@ class XmlWeber
 		$customerItems = [];
 		$baseItems = $this->getOrderBaseItems( $orders );
 
+		$custIds = [];
+		foreach( $baseItems as $baseItem ) {
+			$custIds[] = $baseItem->getCustomerId();
+		}
+
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'customer' );
 		$search = $manager->createSearch()->setSlice( 0, 1 );
+		$search->setConditions( $search->compare( '==', 'customer.id', $custIds ) );
 		$customerItems = $manager->searchItems( $search );
 
 		$this->createFile( $this->createXml( $orders, $baseItems, $customerItems ) );
