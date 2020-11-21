@@ -37,7 +37,7 @@ class Weber extends \Aimeos\MShop\Index\Manager\Text\Solr
 		),
 		'sort:index.text:name' => array(
 			'code' => 'sort:index.text:name()',
-			'internalcode' => 'index.text.name_$1',
+			'internalcode' => 'index.text.sort_$1',
 			'label' => 'Sort product name by language, parameter(<language ID>)',
 			'type' => 'string',
 			'internaltype' => 'string',
