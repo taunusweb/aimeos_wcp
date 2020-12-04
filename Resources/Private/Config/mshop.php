@@ -19,7 +19,7 @@ return [
 	],
 	'index' => [
 		'manager' => [
-			'name' => 'Solr',
+//			'name' => 'Solr',
 			'standard' => [
 				'domains' => [
 					'catalog' => 'catalog',
@@ -30,16 +30,16 @@ return [
 				],
 			],
 			'attribute' => [
-				'name' => 'Solr'
+//				'name' => 'Solr'
 			],
 			'catalog' => [
-				'name' => 'Solr'
+//				'name' => 'Solr'
 			],
 			'price' => [
-				'name' => 'Solr'
+//				'name' => 'Solr'
 			],
 			'text' => [
-				'name' => 'Weber'
+//				'name' => 'Weber'
 			]
 		]
 	],
