@@ -1,0 +1,92 @@
+Bodenschleifmaschine => Einscheibenmaschine,Bodenschleifmaschine
+Bohnerkeule => Einscheibenmaschine,Bohnerkeule
+Bohnermaschine => Einscheibenmaschine,Bohnermaschine
+ESM => Einscheibenmaschine,ESM
+single disk machine => Einscheibenmaschine,single disk machine
+Tellerschleifmaschine => Einscheibenmaschine,Tellerschleifmaschine
+
+Nasssauger => Industriesauger,Nasssauger
+Nasssauger,Wassersauger
+Staubsauger => Industriesauger,Staubsauger
+Trockensauger => Industriesauger,Trockensauger
+Wassersauger => Industriesauger,Wassersauger
+
+KW => Kehrwalzen,KW
+Schmutzwalze => Kehrwalzen,Schmutzwalze
+Walzen => Kehrwalzen,Walzen
+Walzenbesen,Kehrwalzen
+
+Kabel => Anschlusskabel,Maschinenanschlusskabel,Maschinenkabel,Netzkabel,Verlängerungskabel,Kabel
+
+Filter => Filterpatrone,Flachfaltenfilter,Kastenfilter,Motorschutzfilter,Papierfilter,Patronenfilter,Staubfilter,Filter
+
+Filterpatrone,Patronenfilter
+Flachfaltenfilter,Kastenfilter,Motorschutzfilter
+
+Beutel => Filterbeutel,Papierbeutel,Staubbeutel,Staubfilterbeutel,Vliesbeutel,Beutel
+
+Filterbeutel,Staubbeutel,Papierbeutel,Staubfilterbeutel,Vliesbeutel
+Staubfilterbeutel,Filterbeutel,Vliesbeutel
+Super Flo,Super-Flo
+
+Edelstahlrohr,Kunststoffrohr,Metallrohr,Saugrohr
+Rohr => Edelstahlrohr,Kunststoffrohr,Metallrohr,Saugrohr,Staubsaugerrohr,Teleskoprohr,Verlängerungsrohr,Rohr
+
+Staubsaugerrohr,Edelstahlrohr,Kunststoffrohr,Saugrohr,Teleskoprohr,Verlängerungsrohr
+
+Motor => Saugmotor,Motor
+Saugturbine,Saugmotor,Turbine
+SM => Saugmotor,SM
+
+Besen => Seitenbesen,Besen
+Frontbesen => Seitenbesen,Tellerbesen,Frontbesen
+SBE => Seitenbesen,SBE
+TBE => Seitenbesen,TBE
+Tellerbesen,Seitenbesen
+
+Ablasschlauch,Ablassschlauch
+Frischwasserschlauch,Füllschlauch
+Schlauch => Ablassschlauch,Frischwasserschlauch,Füllschlauch,Saugschlauch,Schmutzwasserschlauch,Schlauch
+Schmutzwasserschlauch,Ablassschlauch,Saugschlauch
+SLA => Schlauch,SLA
+
+Abstreifer,Sauglippe
+Gummilippe => Sauglippe, Sauglippensatz,Gummilippe
+Lippe => Sauglippe, Sauglippensatz,Lippe
+squeegee => Sauglippe, Sauglippensatz,squeegee
+
+Bürste => Tellerbürste,Bürste
+disk brush => Tellerbürste,disk brush
+Domtreibteller => Pad-Treibteller mit DOM,Domtreibteller
+Dom-Treibteller => Pad-Treibteller mit DOM,Dom-Treibteller
+Pad Treibteller => Pad-Treibteller,Pad Treibteller
+Schampoobürste => Shampoobürste,Schampoobürste
+Schleifbürste => Schleifkorn-Tellerbürste,Schleifbürste
+Schrubbürste => Schrubbbürste,Schrubbürste
+Shampoonierbürste,Shampoobürste
+TBU => Tellerbürste,TBU
+Tellerbürste => Kratzbürste,Polierbürste,Schampoobürste,Schrubbbürste,Shampoonierbürste,Tellerbürste
+
+Bürste => Walzenbürste,Bürste
+Bürstwalze => Walzenbürste,Bürstwalze
+roller brush => Walzenbürste,roller brush
+WBU => Walzenbürste,WBU
+
+Diamant => Juwex,Diamant
+Diamantpad => Juwex,Diamantpad
+Flooridapad => Floorida,Flooridapad
+Janexpad => Janex,Janexpad
+Juwexpad => Juwex,Juwexpad
+Maroonpad => Maroon,Maroonpad
+Melamin => HD+,Melamin
+Melamin Combo => HD+,Melamin Combo
+Microfaserpad => Microfaser-Pad,Microfaserpad
+Mikrofaser => Microfaser,Mikrofaser
+Mikrofaserpad => Microfaser-Pad,Mikrofaserpad
+Normalpad => Normal,Normalpad
+Polierpad => Polier-Pad,Polierpad
+Superpad => Super-Pad,Superpad
+Twister => Juwex,Twister
+Twisterpad => Juwex,Twisterpad
+
+Düse => Fugendüse,Gummisaugrohr,Hartbodendüse,Heizkörperbürste,Kleiderbürste,Kombidüse,Möbelpinsel,Rohrbürste,Saugpinsel,Staubsaugerdüse,Turbodüse,Universaldüse,Düse
