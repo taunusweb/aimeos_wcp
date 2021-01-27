@@ -41,7 +41,7 @@ $withtax = $this->translate( 'client', 'Incl. %1$s%% VAT' );
 $notax = $this->translate( 'client', '+ %1$s%% VAT' );
 
 $price = ( $p = current( $prices ) ) ? $p->getValue() : 0;
-
+$count = 0;
 ?>
 <meta itemprop="price" content="<?= $price ?>" />
 <?php foreach( $prices as $priceItem ) : ?>
@@ -53,7 +53,7 @@ $price = ( $p = current( $prices ) ) ? $p->getValue() : 0;
 		if( $priceItem->getValue() > $price ) {
 			continue; // Staffelpreise nur wenn sie kleiner sind
 		}
-
+        $count++;
 		$costs = $priceItem->getCosts();
 		$rebate = $priceItem->getRebate();
 		$key = 'price:' . ( $priceItem->getType() ?: 'default' );
@@ -71,8 +71,10 @@ $price = ( $p = current( $prices ) ) ? $p->getValue() : 0;
 		<meta itemprop="price" content="<?= $priceItem->getValue(); ?>" />
 
         <span class="quantity" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>  itemscope="" itemtype="http://schema.org/QuantitativeValue">
+		<?php if( $count > 1 ) : ?>
 			<meta itemprop="minValue" content="<?= $priceItem->getQuantity(); ?>" />
 			<?= $enc->html( sprintf( $format['quantity'], $priceItem->getQuantity() ), $enc::TRUST ); ?>
+        <?php endif; ?>
 		</span>
 
 		<span class="value">
@@ -94,9 +96,6 @@ $price = ( $p = current( $prices ) ) ? $p->getValue() : 0;
 			</span>
 		<?php endif; ?>
 
-        <span class="taxrate" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>>
-			<?= $enc->html( sprintf( $taxformat, $this->number( $priceItem->getTaxrate() ) ), $enc::TRUST ); ?>
-		</span>
 	</div>
 
 <?php endforeach; ?>
