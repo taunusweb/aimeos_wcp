@@ -74,7 +74,7 @@ class Weber extends \Aimeos\MShop\Index\Manager\Text\Solr
 
 		$this->searchConfig['index.text:relevance']['function'] = function( &$source, array $params ) {
 
-			$params[1] = str_replace( [',', '"'], ' ', $params[1] );
+			$params[1] = str_replace( [',', '"', '\\'], ' ', $params[1] );
 
 			$source['bool']['should'][] = 'product.code:' . $params[1] . '^1000';
 			$source['bool']['should'][] = 'product.code:' . $params[1] . '*^750';
