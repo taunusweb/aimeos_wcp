@@ -202,7 +202,7 @@ class Weber
 			$context->getLogger()->log( $msg, \Aimeos\MW\Logger\Base::INFO );
 		}
 
-		parent::process();
+		\Aimeos\Client\Html\Base::process();
 	}
 
 
