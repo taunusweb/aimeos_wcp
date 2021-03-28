@@ -113,8 +113,16 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 						'css' => $deliveryCss,
 					)
 				); ?>
-			</ul>
 
+				<div class="row form-item form-group store <?= join( ' ', $this->value( 'css', 'nostore', [] ) ) ?>">
+					<label class="col-md-5" for="address-delivery-store">
+						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ); ?>
+					</label>
+					<div class="col-md-7">
+						<input class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ); ?>" />
+					</div>
+				</div>
+			</ul>
 		</div>
 
 	<?php endif; ?>
@@ -200,15 +208,6 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 						'id' => $id,
 					)
 				); ?>
-
-				<div class="row form-item form-group store <?= join( ' ', $this->value( 'css', 'nostore', [] ) ) ?>">
-					<label class="col-md-5" for="address-delivery-store">
-						<?= $enc->html( $this->translate( 'client', 'Don\'t store address' ), $enc::TRUST ); ?>
-					</label>
-					<div class="col-md-7">
-						<input class="custom-control custom-checkbox" type="checkbox" value="1" name="<?= $enc->attr( $this->formparam( ['ca_delivery', 'nostore'] ) ); ?>" />
-					</div>
-				</div>
 			</ul>
 
 		</div>
