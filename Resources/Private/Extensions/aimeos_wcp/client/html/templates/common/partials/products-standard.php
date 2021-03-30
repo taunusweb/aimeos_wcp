@@ -133,16 +133,13 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
 		<?php
-            $longText = "";
-            if($productItem->getCatalogItems() !== null){
-                foreach ($productItem->getCatalogItems() as $category){
-                    if(in_array($category->getCode(), $this->config('client/html/catalog/lists/show_longtext', []))){
-                        foreach( $productItem->getRefItems( 'text', 'long', 'default' ) as $textItem ) {
-                        $longText = '<div class="text-item-tooltip"><span class="info">i</span><span class="tooltip-text">'.$enc->html( $textItem->getContent(), $enc::TRUST ).'</span></div>';
-                        }
-                    }
-                }
-            }
+			$longText = "";
+			$listAttributes = $productItem->getListItems('text');
+			foreach ($listAttributes as $textListItems) {
+				if ($textListItems->getPosition() == 1  && $textListItems->getRefItem()->getType() == "long") {
+					$longText = '<div class="text-item-tooltip"><span class="info">i</span><span class="tooltip-text">'.$enc->html( $textListItems->getRefItem()->getContent(), $enc::TRUST ).'</span></div>';
+				}
+			}
 
 		    $oem = [];
 			$dimensions = "";
@@ -218,6 +215,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 						<span class="name"><?= $enc->html($this->translate('client', 'Article no.'), $enc::TRUST); ?>: </span>
 						<?= $enc->html( $productItem->getCode(), $enc::TRUST ); ?>
                         <?= $longText ?>
+
 					</h3>
 
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
