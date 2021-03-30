@@ -19,7 +19,7 @@ class Weber extends Standard
 
 		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
 			->compare( '>', 'catalog:relevance("' . str_replace( '"', ' ', $text ) . '")', 0 )
-			->sort( '-sort:catalog:relevance("' . str_replace( '"', ' ', $text ) . '")' )->sort( 'catalog.label' )
+			->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )->sort( 'catalog.label' )
 			->slice( 0, 4 )->search();
 
 		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )

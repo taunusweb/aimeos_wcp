@@ -26,4 +26,9 @@ return [
             ],
         ],
     ],
+    'frontend' => [
+        'basket' => [
+            'name' => 'Weber'
+        ]
+    ]
 ];

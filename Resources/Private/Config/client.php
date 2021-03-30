@@ -35,5 +35,14 @@ return [
 				'selection' => 'common/partials/selection-list'
 			]
         ],
+        'checkout' => [
+            'standard' => [
+                'process' => [
+                    'address' => [
+                        'name' => 'Weber'
+                    ]
+                ]
+            ]
+        ]
     ]
 ];
