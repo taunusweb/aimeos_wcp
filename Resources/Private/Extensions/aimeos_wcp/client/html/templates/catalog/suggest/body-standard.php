@@ -20,7 +20,7 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 foreach( $this->get( 'suggestCatalogItems', [] ) as $id => $catItem )
 {
-	$media = '';
+	$media = $this->config( 'controller/common/media/standard/options/image/watermark');
 	$name = strip_tags( $catItem->getName() );
 	$mediaItems = $catItem->getRefItems( 'media', 'default', 'default' );
 
@@ -44,7 +44,8 @@ foreach( $this->get( 'suggestCatalogItems', [] ) as $id => $catItem )
 
 foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 {
-	$media = $price = '';
+	$media = $this->config( 'controller/common/media/standard/options/image/watermark');
+    $price = '';
 	$name = strip_tags( $productItem->getName() );
 	$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
 	$priceItems = $productItem->getRefItems( 'price', 'default', 'default' );
