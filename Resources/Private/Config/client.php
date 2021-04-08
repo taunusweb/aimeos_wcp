@@ -15,7 +15,7 @@ return [
                 ],
                 'levels' => 2,
                 'domains' => [
-                   'catalog', 'media', 'price', 'text', 'product/property', 'attribute'
+                   'media', 'price', 'text', 'product/property', 'attribute'
                 ],
             ],
 			'stock' => [
