@@ -9,6 +9,7 @@ return [
 				]
 			],
             'lists' => [
+                'show_longtext' => ['Aktionen_52400_FM'],
                 'decorators' => [
                     'global' => ['ListCategories']
                 ],
