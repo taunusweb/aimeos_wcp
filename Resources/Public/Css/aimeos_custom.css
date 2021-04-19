@@ -1,0 +1,465 @@
+
+.aimeos .btn-primary,
+.aimeos .btn-primary:active {
+    background-color: #006AB3;
+    border: solid 1px #006AB3;
+}
+
+.aimeos .addbasket input {
+    border: solid 1px #006AB3;
+}
+
+.aimeos a:link:not(.btn),
+.aimeos a:visited:not(.btn) {
+    color: #006AB3;
+}
+
+.catalog-filter-attribute .attribute-lists li.attr-item.disabled {
+    display: none;
+}
+
+.text-item-tooltip {
+    display: inline-block;
+}
+
+
+/*
+
+.aimeos .price-item {
+    display: none;
+}
+
+.aimeos .price-item:first-of-type {
+    display: block;
+}
+
+ */
+
+
+/* Catalog filter */
+.catalog-filter {
+    text-align: left;
+}
+
+.catalog-filter-tree .catcode-home > a:before {
+    color: #006AB3;
+}
+
+.catalog-filter-tree .media-list {
+    margin: 0;
+}
+
+.catalog-filter-search .value {
+    border-color: #006AB3;
+}
+
+.catalog-filter-search .reset {
+    border-color: #006AB3;
+}
+
+.catalog-filter-search .btn-primary {
+    padding: 0.9rem 0.75rem;
+}
+
+.catalog-filter-tree > h2 {
+    border-bottom: solid 1px #006AB3;
+    font-size: 100%;
+    cursor: inherit;
+    display: block;
+    float: none;
+    width: inherit;
+    padding: 0.5em 0;
+    margin: 0 0 1em 0;
+}
+
+.catalog-filter-tree ul.level-1 {
+    overflow: auto;
+    height: 100vh;
+}
+
+.sectionContent ul.level-0 {
+    list-style: none;
+}
+
+.catalog-filter-tree > ul {
+    display: block;
+}
+
+ul.level-2 {
+    background-color: #eee;
+}
+
+ul.level-2 a.cat-item {
+    border-bottom: solid 0px #006AB3;
+    padding: 0.25em 0 0.25em 0.5em;
+}
+
+.catalog-filter-tree a.cat-item {
+    border-bottom: solid 1px #006AB3;
+    white-space: inherit;
+}
+
+.catalog-filter-attribute > h2,
+.catalog-filter-supplier > h2 {
+    border-bottom: solid 1px #006AB3;
+    text-align: left;
+    width: 100%;
+}
+
+.catalog-filter-attribute .attribute-lists,
+.catalog-filter-supplier .supplier-lists {
+    display: inline-block;
+}
+
+/* Product list, stage section */
+.catalog-stage {
+    color: #006AB3;
+}
+
+.catalog-stage-breadcrumb {
+    display: none;
+}
+
+.aimeos .suggest-item .item-image {
+    background-image: url(/typo3conf/ext/aimeos_wcp/Resources/Public/wasserzeichen.png);
+}
+
+.catalog-list .product {
+    border-bottom: 1px solid #006AB3;
+    min-height: 420px;
+}
+
+.catalog-list .media-list {
+    background-image: url('/fileadmin/Layout/weber_platzhalter.jpg');
+    height: 180px;
+}
+
+/* media list */
+.catalog-filter-wcp .media-list {
+    background-image: url('/fileadmin/Layout/weber_platzhalter.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    height: 180px;
+    width: 240px;
+}
+
+.catcode-topFabrikat > a {
+    display: none;
+}
+
+.sectionContent .catalog-filter-wcp ul {
+    list-style-type: none;
+}
+
+.catalog-list .media-item {
+    position: relative;
+    height: 180px;
+    width: 240px;
+}
+
+.aimeos .product .text-list h3 {
+    font-weight: 700;
+}
+
+.aimeos .product .text-list h2 {
+    height: inherit;
+    min-height: 34px;
+
+}
+
+.aimeos .product .text-list .text-item {
+    overflow: hidden;
+    height: inherit;
+    line-height: 1;
+    padding: 0 0 10px 0;
+}
+
+/* product offer part */
+.catalog-list .offer {
+    max-width: 15em;
+}
+
+.catalog-list .price-list .price-item {
+    display: none;
+}
+
+.catalog-list .price-list .price-item:first-of-type {
+    display: block;
+}
+
+.catalog-list .product .offer {
+    position: absolute;
+    bottom: 5px;
+}
+
+.aimeos .product .stockitem {
+    display: none;
+    margin: 0;
+}
+
+.aimeos .product .stock-unlimited .stocklevel,
+.aimeos .product .stock-high .stocklevel {
+    background-color: #18ba18;
+}
+
+.aimeos .product .stock-low .stocklevel {
+    background-color: #e4d811;
+}
+
+.aimeos .product .stock-out .stocklevel {
+    background-color: #d01616;
+}
+
+.catalog-list-items {
+    margin: 1em 0;
+    text-align: inherit;
+}
+
+.catalog-list-items .list .product {
+    border-left: solid 1px #006AB3;
+}
+
+.catalog-detail-image .image-single {
+    background-image: url('/fileadmin/Layout/weber_platzhalter.jpg');
+}
+
+.catalog-detail-image .thumbs-horizontal button {
+    vertical-align: inherit;
+}
+
+/* Product detail, basic section */
+.catalog-detail-basic h1.name {
+    text-transform: none;
+    font-size: 110%;
+    color: #006AB3;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 0.5em;
+}
+
+
+.catalog-detail-basic .short {
+    display: inline-block;
+}
+
+/*
+
+.catalog-detail-basket .price-item:first-of-type {
+    display: block;
+    cursor: pointer;
+}
+
+*/
+
+
+/* services */
+.catalog-detail-basket .service-intro {
+    cursor: pointer;
+    color: #006AB3;
+}
+
+.catalog-list-items .selection .select-option:checked + .select-label,
+.catalog-detail-basket .selection .select-option:checked + .select-label {
+    border: solid 1px #006AB3;
+    background-color: #006AB3;
+    color: #fff;
+}
+
+.catalog-list-items .selection input.select-option[type=number],
+.catalog-detail-basket .selection input.select-option[type=number] {
+    border: solid 1px #006AB3;
+}
+
+/*
+.catalog-detail-additional .header:after {
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: 120%;
+	content: "\f196";
+	float: right;
+}
+
+.catalog-detail-additional .subproduct {
+    display: none;
+}
+*/
+
+/* Web-Services, show atrributes and properties always */
+.catalog-detail-additional .header {
+    cursor: default;
+}
+
+.catalog-filter-attribute fieldset {
+    display: inline-block;
+    width: auto;
+    border-left: 0;
+}
+
+.catalog-filter-attribute legend {
+    border-left: 0;
+}
+
+.catalog-filter-attribute .attribute-lists .attr-list {
+    height: 100%;
+}
+
+.aimeos .catalog-detail-basket .stock-unlimited,
+.aimeos .catalog-detail-basket .stock-high {
+    color: #18ba18;
+}
+
+.aimeos .catalog-detail-basket .stock-low {
+    color: #e4d811;
+}
+
+.aimeos .catalog-detail-basket .stock-out {
+    color: #d01616;
+}
+
+.account-watch,
+.account-favorite,
+.basket-related-bought,
+.catalog-detail-bought,
+.catalog-detail-bundle,
+.catalog-detail-suggest,
+.catalog-session {
+    clear: both;
+    padding: 1em 0;
+    text-align: inherit;
+}
+
+.account-subscription .header,
+.account-history .header,
+.account-watch .header,
+.account-favorite .header,
+.basket-related-bought .header,
+.catalog-session .header,
+.catalog-detail .header {
+    border-bottom: solid 1px #006AB3;
+}
+
+.basket-related-bought .media-list,
+.catalog-detail-bought .media-list,
+.catalog-detail-bundle .media-list,
+.catalog-detail-suggest .media-list,
+.catalog-session-seen .media-list {
+    background-image: url('/fileadmin/Layout/weber_platzhalter.jpg');
+}
+
+.account-watch .media-item,
+.account-favorite .media-item,
+.basket-related-bought .media-item,
+.catalog-detail-bought .media-item,
+.catalog-detail-bundle .media-item,
+.catalog-detail-suggest .media-item,
+.catalog-session-seen .media-item,
+.catalog-session-pinned .media-item {
+    background-image: url('/fileadmin/Layout/weber_platzhalter.jpg');
+}
+
+.account-watch .name,
+.account-favorite .name,
+.basket-related-bought .name,
+.catalog-detail-bought .name,
+.catalog-detail-bundle .name,
+.catalog-detail-suggest .name,
+.catalog-session-seen .name,
+.catalog-session-pinned .name {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    font-size: 100%;
+    font-weight: normal;
+    text-align: center;
+    overflow: hidden;
+    text-transform: uppercase;
+    max-width: 15em;
+    margin: auto;
+}
+
+/* Mini basket */
+.basket-mini {
+    background-color: #006AB3;
+    color: #555;
+}
+
+.basket-mini-product .basket-toggle {
+    color: #006AB3;
+}
+
+.basket-standard-coupon .coupon-new .coupon-code {
+    border: 1px solid #006AB3;
+}
+
+.aimeos .common-summary .header,
+.aimeos .common-summary-detail .header {
+    border-bottom: solid 1px #006AB3;
+}
+
+/*
+.ui-menu-item:hover {
+    background-color: #B0A060;
+    color: #FFFFFF;
+}
+
+.ui-menu-item:focus, .ui-state-active {
+    background: #B0A060;
+    color: #ffffff;
+}
+
+ */
+
+.catalog-filter-wcp .cat-name {
+    width: 240px;
+    display: block;
+    text-align: center;
+}
+
+
+.text-item-tooltip .info {
+    display: block;
+    color: #006AB3;
+    border-radius: 50%;
+    width: 20px;
+    border: 1px solid;
+    height: 20px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-left: 5px;
+    font-weight: bolder;
+}
+
+.text-item-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 220px;
+    background-color: gray;
+    font-weight: normal;
+    color: #fff;
+    text-align: center;
+    left: 0;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+}
+
+.text-item-tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+.aimeos.catalog-list .product .text-list {
+    overflow: inherit;
+}
+
+.aimeos.catalog-list .product {
+    line-height: 1;
+}
+
+.catalog-detail-basket .price-item:first-of-type:after {
+    display: none;
+}

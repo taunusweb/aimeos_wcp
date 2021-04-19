@@ -9,12 +9,13 @@ return [
 				]
 			],
             'lists' => [
+                'show_longtext' => ['Aktionen_52400_FM'],
                 'decorators' => [
                     'global' => ['ListCategories']
                 ],
                 'levels' => 2,
                 'domains' => [
-                    'media', 'price', 'text', 'product/property', 'attribute'
+                   'media', 'price', 'text', 'product/property', 'attribute'
                 ],
             ],
 			'stock' => [

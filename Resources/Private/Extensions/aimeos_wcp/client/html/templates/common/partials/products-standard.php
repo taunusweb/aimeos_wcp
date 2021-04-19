@@ -133,6 +133,13 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
 		<?php
+			$longText = "";
+			$listAttributes = $productItem->getListItems('text');
+			foreach ($listAttributes as $textListItems) {
+				if ($textListItems->getPosition() == 1  && $textListItems->getRefItem()->getType() == "long") {
+					$longText = '<div class="text-item-tooltip"><span class="info">i</span><span class="tooltip-text">'.$enc->html( $textListItems->getRefItem()->getContent(), $enc::TRUST ).'</span></div>';
+				}
+			}
 
 		    $oem = [];
 			$dimensions = "";
@@ -207,40 +214,48 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					<h3>
 						<span class="name"><?= $enc->html($this->translate('client', 'Article no.'), $enc::TRUST); ?>: </span>
 						<?= $enc->html( $productItem->getCode(), $enc::TRUST ); ?>
+                        <?= $longText ?>
+
 					</h3>
+
 					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
 						<div class="text-item" itemprop="description">
-							<?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?><br/>
+                            <div class="text-item-tooltip">
+                                <?= $enc->html(mb_strimwidth($textItem->getContent(), 0, 70, "...") , $enc::TRUST ); ?><br/>
+                                <span class="tooltip-text">
+                                    <?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
+                                </span>
+                            </div>
 					</div>
 					<?php endforeach; ?>
 				</div>
 
 			</a>
 
-				<?php if ($bristle !== ""): ?>
-					<p class="code">
-						<span class="name"><?= $enc->html($this->translate('client', 'Borste:'), $enc::TRUST); ?></span>
-						<span class="value"><?= $enc->html($bristle); ?></span>
-					</p>
-				<?php endif ?>
-				<?php if ($material !== ""): ?>
-					<p class="code">
-						<span class="name"><?= $enc->html($this->translate('client', 'Materialart:'), $enc::TRUST); ?></span>
-						<span class="value"><?= $enc->html($material); ?></span>
-							</p>
-				<?php endif ?>
-                <?php if ($dimensions !== ""): ?>
-                    <p class="code">
-	                    <span class="name sr-only"><?= $enc->html($this->translate('client', 'Abmessungen'), $enc::TRUST); ?></span>
-                        <span class="value"><?= $enc->html($dimensions); ?></span>
-                    </p>
-                <?php endif ?>
-   			    <?php if ($oem !== []): ?>
-					<p class="code">
-							<span class="name"><?= $enc->html($this->translate('client', 'OEM-Nr.'), $enc::TRUST); ?></span>
-							<span class="value"><?= $enc->html(current($oem)->getValue()); ?></span>
-					</p>
-   			     <?php endif ?>
+            <?php if ($bristle !== ""): ?>
+                <p class="code">
+                    <span class="name"><?= $enc->html($this->translate('client', 'Borste:'), $enc::TRUST); ?></span>
+                    <span class="value"><?= $enc->html($bristle); ?></span>
+                </p>
+            <?php endif ?>
+            <?php if ($material !== ""): ?>
+                <p class="code">
+                    <span class="name"><?= $enc->html($this->translate('client', 'Materialart:'), $enc::TRUST); ?></span>
+                    <span class="value"><?= $enc->html($material); ?></span>
+                        </p>
+            <?php endif ?>
+            <?php if ($dimensions !== ""): ?>
+                <p class="code">
+                    <span class="name sr-only"><?= $enc->html($this->translate('client', 'Abmessungen'), $enc::TRUST); ?></span>
+                    <span class="value"><?= $enc->html($dimensions); ?></span>
+                </p>
+            <?php endif ?>
+            <?php if ($oem !== []): ?>
+                <p class="code">
+                        <span class="name"><?= $enc->html($this->translate('client', 'OEM-Nr.'), $enc::TRUST); ?></span>
+                        <span class="value"><?= $enc->html(current($oem)->getValue()); ?></span>
+                </p>
+            <?php endif ?>
 
 
 			<div class="offer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
