@@ -16,7 +16,7 @@ namespace Aimeos\MShop\Service\Provider\Decorator;
  * @package MShop
  * @subpackage Service
  */
-class Neutral
+class Appointment
 	extends \Aimeos\MShop\Service\Provider\Decorator\Base
 	implements \Aimeos\MShop\Service\Provider\Decorator\Iface
 {
