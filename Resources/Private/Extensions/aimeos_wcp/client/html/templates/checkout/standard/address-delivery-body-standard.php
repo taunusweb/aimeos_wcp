@@ -134,7 +134,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 		<div class="item-address" onclick="$('.checkout-standard-address-delivery .address-list').toggle()">
 			<div class="header" style="padding-left: 1.25em">
 				<?= $enc->html( $this->translate( 'client', 'Gespeicherte Adressen' ) ) ?>
-			<div>
+			</div>
 		</div>
 	<?php endif ?>
 
