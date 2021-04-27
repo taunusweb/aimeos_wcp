@@ -130,6 +130,10 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 	<?php endif; ?>
 
 
+	<div class="item-address" onclick="$('.address-list').toggle()">
+		<?= $enc->html( $this->translate( 'client', 'Gespeicherte Adressen' ) ) ?>
+	</div>
+	<div class="address-list" style="display: none">
 	<?php foreach( $this->get( 'addressDeliveryItems', [] ) as $id => $addr ) : ?>
 		<div class="item-address">
 
@@ -214,6 +218,7 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 
 		</div>
 	<?php endforeach; ?>
+	</div>
 
 </div>
 <?php $this->block()->stop(); ?>
