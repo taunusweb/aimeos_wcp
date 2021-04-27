@@ -42,7 +42,7 @@ class Neutral
 	 */
 	public function getConfigFE( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : array
 	{
-		return array_merge( $this->getProvider()->getConfigFE( $basket ), $this->getConfigItems( $this->feconfig ) );
+		return array_merge( $this->getProvider()->getConfigFE( $basket ), $this->getConfigItems( $this->feConfig ) );
 	}
 
 
