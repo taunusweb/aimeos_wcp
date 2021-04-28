@@ -48,10 +48,9 @@ class Appointment
 	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket )
 	{
 		$price = $this->getProvider()->calcPrice( $basket );
+		$args = func_get_args(); // additional config parameter
 
-		if( !empty( $services = $basket->getService( 'delivery' ) ) && ( $service = current( $services ) )
-			&& $service->getAttribute( 'appointment.option', 'delivery' ) == 1
-		) {
+		if( isset( $args[1] ) && is_array( $args[1] ) && isset( $args[1]['appointment.option'] ) && $args[1]['appointment.option'] == 1 ) {
 			return $price->setCosts( $price->getCosts() + $this->getConfigValue( 'appointment.price', 0 ) );
 		}
 
