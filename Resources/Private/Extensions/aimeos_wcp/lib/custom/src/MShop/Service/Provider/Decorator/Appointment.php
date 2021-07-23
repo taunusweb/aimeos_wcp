@@ -82,6 +82,19 @@ class Appointment
 
 	public function getConfigFE( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : array
 	{
-		return array_merge( $this->getProvider()->getConfigFE( $basket ), $this->getConfigItems( $this->feConfig ) );
+		$feconfig = $this->feConfig;
+
+		try
+		{
+			$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
+			$service = $this->getBasketService( $basket, $type, $this->getServiceItem()->getCode() );
+
+			if( ( $value = $service->getAttribute( 'appointment.option', 'delivery' ) ) != '' ) {
+				$feconfig['appointment.option']['default'] = $value;
+			}
+		}
+		catch( \Aimeos\MShop\Service\Exception $e ) {} // If service isn't available
+
+		return array_merge( $this->getProvider()->getConfigFE( $basket ), $this->getConfigItems( $feconfig ) );
 	}
 }
