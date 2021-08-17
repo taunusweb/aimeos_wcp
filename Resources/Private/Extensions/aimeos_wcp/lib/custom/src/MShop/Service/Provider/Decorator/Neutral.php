@@ -27,7 +27,7 @@ class Neutral
 			'label' => 'Neutralversand',
 			'type' => 'boolean',
 			'internaltype' => 'boolean',
-			'default' => '0',
+			'default' => '1',
 			'required' => false
 		),
 	);
@@ -42,20 +42,25 @@ class Neutral
 	 */
 	public function getConfigFE( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : array
 	{
-		$feconfig = $this->feConfig;
-
-		try
+		if( !empty( $basket->getAddress( 'delivery' ) ) )
 		{
-			$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
-			$service = $this->getBasketService( $basket, $type, $this->getServiceItem()->getCode() );
+			$feconfig = $this->feConfig;
 
-			if( ( $value = $service->getAttribute( 'neutral.option', 'delivery' ) ) != '' ) {
-				$feconfig['neutral.option']['default'] = $value;
+			try
+			{
+				$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
+				$service = $this->getBasketService( $basket, $type, $this->getServiceItem()->getCode() );
+
+				if( ( $value = $service->getAttribute( 'neutral.option', 'delivery' ) ) != '' ) {
+					$feconfig['neutral.option']['default'] = $value;
+				}
 			}
-		}
-		catch( \Aimeos\MShop\Service\Exception $e ) {} // If service isn't available
+			catch( \Aimeos\MShop\Service\Exception $e ) {} // If service isn't available
 
-		return array_merge( $this->getProvider()->getConfigFE( $basket ), $this->getConfigItems( $feconfig ) );
+			return array_merge( $this->getProvider()->getConfigFE( $basket ), $this->getConfigItems( $feconfig ) );
+		}
+
+		return $this->getProvider()->getConfigFE( $basket );
 	}
 
 
