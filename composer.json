@@ -6,12 +6,17 @@
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"require": {
-		"php": ">=5.5.0"
+		"php": ">=7.1"
 	},
 	"autoload": {
 		"classmap": ["Classes"],
 		"psr-4": {
 			"Aimeos\\Aimeos\\": "Classes"
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "aimeos_wcp"
 		}
 	}
 }
