@@ -35,31 +35,33 @@ return array(
 	'config' => array(
 		'config',
 	),
-	'custom' => array(
-		'admin/jqadm' => array(
-			'admin/jqadm/manifest.jsb2',
-		),
-		'admin/jqadm/templates' => array(
+	'template' => [
+		'admin/jqadm/templates' => [
 			'admin/jqadm/templates',
-		),
-		'admin/jsonadm/templates' => array(
+		],
+		'admin/jsonadm/templates' => [
 			'admin/jsonadm/templates',
-		),
-		'client/html/templates' => array(
+		],
+		'client/html/templates' => [
 			'client/html/templates',
-		),
-		'client/jsonapi/templates' => array(
+		],
+		'client/jsonapi/templates' => [
 			'client/jsonapi/templates',
-		),
-		'controller/jobs' => array(
-			'controller/jobs/src',
-		),
-		'controller/jobs/templates' => array(
+		],
+		'controller/jobs/templates' => [
 			'controller/jobs/templates',
 			'client/html/templates',
 			'lib/custom/templates',
-		),
-	),
+		],
+	],
+	'custom' => [
+		'admin/jqadm' => [
+			'admin/jqadm/manifest.jsb2',
+		],
+		'controller/jobs' => [
+			'controller/jobs/src',
+		],
+	],
 	'setup' => array(
 		'lib/custom/setup',
 	),
