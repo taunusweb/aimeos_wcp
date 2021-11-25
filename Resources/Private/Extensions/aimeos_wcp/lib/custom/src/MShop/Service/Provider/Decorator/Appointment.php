@@ -58,7 +58,7 @@ class Appointment
 	}
 
 
-	public function checkConfigBE( array $attributes )
+	public function checkConfigBE( array $attributes ) : array
 	{
 		$error = $this->getProvider()->checkConfigBE( $attributes );
 		$error += $this->checkConfig( $this->beConfig, $attributes );
@@ -74,7 +74,7 @@ class Appointment
 	}
 
 
-	public function getConfigBE()
+	public function getConfigBE() : array
 	{
 		return array_merge( $this->getProvider()->getConfigBE(), $this->getConfigItems( $this->beConfig ) );
 	}

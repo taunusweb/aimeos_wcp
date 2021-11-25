@@ -99,7 +99,7 @@ class Weber extends \Aimeos\MShop\Index\Manager\Text\Solr
 	 * @param boolean $withsub True to return attributes of sub-managers too
 	 * @return \Aimeos\MW\Criteria\Attribute\Iface[] List attribute criteria objects
 	 */
-	public function getSearchAttributes( $withsub = true )
+	public function getSearchAttributes( bool $withsub = true ) : array
 	{
 		$list = [];
 

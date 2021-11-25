@@ -70,7 +70,7 @@ class XmlWeber
 	 * @return array An array with the attribute keys as key and an error message as values for all attributes that are
 	 * 	known by the provider but aren't valid
 	 */
-	public function checkConfigBE( array $attributes )
+	public function checkConfigBE( array $attributes ) : array
 	{
 		$errors = parent::checkConfigBE( $attributes );
 
@@ -84,7 +84,7 @@ class XmlWeber
 	 *
 	 * @return array List of attribute definitions implementing \Aimeos\MW\Common\Critera\Attribute\Iface
 	 */
-	public function getConfigBE()
+	public function getConfigBE() : array
 	{
 		return $this->getConfigItems( $this->beConfig );
 	}
@@ -96,7 +96,7 @@ class XmlWeber
 	 * @param \Aimeos\MShop\Order\Item\Iface $order Order instance
 	 * @return \Aimeos\MShop\Order\Item\Iface Updated order item
 	 */
-	public function process( \Aimeos\MShop\Order\Item\Iface $order )
+	public function process( \Aimeos\MShop\Order\Item\Iface $order ) : \Aimeos\MShop\Order\Item\Iface
 	{
 		$customerItems = [];
 		$baseItem = $this->getOrderBase( $order->getBaseId(), \Aimeos\MShop\Order\Item\Base\Base::PARTS_ALL );
@@ -121,7 +121,7 @@ class XmlWeber
 	 * @param \Aimeos\MShop\Order\Item\Iface[] $orders List of order invoice objects
 	 * @return \Aimeos\MShop\Order\Item\Iface[] Updated order items
 	 */
-	public function processBatch( array $orders )
+	public function processBatch( array $orders ) : array
 	{
 		$customerItems = [];
 		$baseItems = $this->getOrderBaseItems( $orders );
@@ -153,7 +153,7 @@ class XmlWeber
 	 * @return boolean True if the update was successful, false if async updates are not supported
 	 * @throws \Aimeos\MShop\Service\Exception If updating one of the orders failed
 	 */
-	public function updateAsync()
+	public function updateAsync() : bool
 	{
 		$context = $this->getContext();
 		$logger = $context->getLogger();
@@ -200,7 +200,7 @@ class XmlWeber
 	 *
 	 * @param string $content XML content
 	 */
-	protected function createFile( $content )
+	protected function createFile( string $content )
 	{
 		$filepath = $this->getConfigValue( 'xml.exportpath', './order_%Y-%m-%d_%T_%%d.xml' );
 		$filepath = sprintf( strftime( $filepath ), $this->num++ );
@@ -221,7 +221,7 @@ class XmlWeber
 	 * @param \Aimeos\MShop\Customer\Item\Iface[] $customerItems List of customer items who placed the orders
 	 * @return string Generated XML
 	 */
-	protected function createXml( array $orderItems, array $baseItems, array $customerItems )
+	protected function createXml( array $orderItems, array $baseItems, array $customerItems ) : string
 	{
 		$view = $this->getContext()->getView();
 		$template = $this->getConfigValue( 'xml.template', 'service/provider/delivery/xml-body-standard' );
@@ -240,7 +240,7 @@ class XmlWeber
 	 * @param \Aimeos\MShop\Order\Item\Iface[] $orderItems List of order items
 	 * @return \Aimeos\MShop\Order\Item\Base\Iface[] Associative list of IDs as keys and order base items as values
 	 */
-	protected function getOrderBaseItems( array $orderItems )
+	protected function getOrderBaseItems( array $orderItems ) : array
 	{
 		$ids = [];
 		$ref = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
@@ -262,7 +262,7 @@ class XmlWeber
 	 *
 	 * @param string $filename Relative or absolute path to the XML file
 	 */
-	protected function importFile( $filename )
+	protected function importFile( string $filename )
 	{
 		$nodes = [];
 		$xml = new \XMLReader();

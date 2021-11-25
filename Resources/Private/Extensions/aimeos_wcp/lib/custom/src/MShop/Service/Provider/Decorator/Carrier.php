@@ -20,7 +20,7 @@ class Carrier
 	extends \Aimeos\MShop\Service\Provider\Decorator\Base
 	implements \Aimeos\MShop\Service\Provider\Decorator\Iface
 {
-	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
 	{
 		$prodIds = [];
 		foreach( $basket->getProducts() as $orderProduct ) {

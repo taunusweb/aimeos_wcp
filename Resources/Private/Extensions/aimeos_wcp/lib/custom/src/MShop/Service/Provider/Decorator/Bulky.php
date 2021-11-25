@@ -33,7 +33,7 @@ class Bulky
 	);
 
 
-	public function checkConfigBE( array $attributes )
+	public function checkConfigBE( array $attributes ) : array
 	{
 		$error = $this->getProvider()->checkConfigBE( $attributes );
 		$error += $this->checkConfig( $this->beConfig, $attributes );
@@ -42,13 +42,13 @@ class Bulky
 	}
 
 
-	public function getConfigBE()
+	public function getConfigBE() : array
 	{
 		return array_merge( $this->getProvider()->getConfigBE(), $this->getConfigItems( $this->beConfig ) );
 	}
 
 
-	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Price\Item\Iface
 	{
 		$config = $this->getServiceItem()->getConfig();
 
@@ -82,7 +82,7 @@ class Bulky
 	}
 
 
-	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
 	{
 		$prodIds = [];
 		foreach( $basket->getProducts() as $orderProduct ) {
