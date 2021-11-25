@@ -34,10 +34,7 @@ return array(
 	'config' => array(
 		'config',
 	),
-	'custom' => array(
-		'admin/jqadm' => array(
-			'admin/jqadm/manifest.jsb2',
-		),
+	'template' => [
 		'admin/jqadm/templates' => array(
 			'admin/jqadm/templates',
 		),
@@ -50,12 +47,17 @@ return array(
 		'client/jsonapi/templates' => array(
 			'client/jsonapi/templates',
 		),
-		'controller/jobs' => array(
-			'controller/jobs/src',
-		),
 		'controller/jobs/templates' => array(
 			'controller/jobs/templates',
 			'client/html/templates',
+		),
+	],
+	'custom' => array(
+		'admin/jqadm' => array(
+			'admin/jqadm/manifest.jsb2',
+		),
+		'controller/jobs' => array(
+			'controller/jobs/src',
 		),
 	),
 	'setup' => array(
