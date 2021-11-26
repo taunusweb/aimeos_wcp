@@ -45,7 +45,7 @@ class Appointment
 	);
 
 
-	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : Aimeos\MShop\Price\Item\Iface
+	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Price\Item\Iface
 	{
 		$price = $this->getProvider()->calcPrice( $basket );
 		$args = func_get_args(); // additional config parameter
