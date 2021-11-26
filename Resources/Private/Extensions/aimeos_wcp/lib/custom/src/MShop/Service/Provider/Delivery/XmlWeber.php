@@ -121,7 +121,7 @@ class XmlWeber
 	 * @param \Aimeos\MShop\Order\Item\Iface[] $orders List of order invoice objects
 	 * @return \Aimeos\MShop\Order\Item\Iface[] Updated order items
 	 */
-	public function processBatch( iterable $orders ) : Aimeos\Map
+	public function processBatch( iterable $orders ) : \Aimeos\Map
 	{
 		$customerItems = [];
 		$baseItems = $this->getOrderBaseItems( $orders );
