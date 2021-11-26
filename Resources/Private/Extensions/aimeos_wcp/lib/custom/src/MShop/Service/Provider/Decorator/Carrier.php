@@ -34,6 +34,6 @@ class Carrier
 			$search->compare( '!=', $search->make( 'product:prop', ['shipping', null, 'carrier'] ), null )
 		] ) );
 
-		return count( $manager->searchItems( $search ) ) ? $this->getProvider()->isAvailable( $basket ) : false;
+		return count( $manager->search( $search ) ) ? $this->getProvider()->isAvailable( $basket ) : false;
 	}
 }

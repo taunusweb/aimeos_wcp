@@ -67,7 +67,7 @@ class Bulky
 			$search->compare( '==', 'product.id', $prodIds ),
 			$search->compare( '!=', $search->make( 'product:prop', ['shipping', null, 'bulky'] ), null )
 		] ) );
-		$products = $manager->searchItems( $search );
+		$products = $manager->search( $search );
 
 		$qty = 0;
 		foreach( $basket->getProducts() as $orderProduct )
@@ -96,6 +96,6 @@ class Bulky
 			$search->compare( '!=', $search->make( 'product:prop', ['shipping', null, 'carrier'] ), null )
 		] ) );
 
-		return count( $manager->searchItems( $search ) ) ? false : $this->getProvider()->isAvailable( $basket );
+		return count( $manager->search( $search ) ) ? false : $this->getProvider()->isAvailable( $basket );
 	}
 }
