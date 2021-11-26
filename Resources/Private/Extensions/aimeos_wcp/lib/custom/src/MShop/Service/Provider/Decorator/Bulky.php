@@ -65,7 +65,7 @@ class Bulky
 		$search = $manager->filter()->slice( 0 , 10000 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
-			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'bulky'] ), null )
+			$search->compare( '!=', $search->make( 'product:prop', ['shipping', null, 'bulky'] ), null )
 		] ) );
 		$products = $manager->searchItems( $search );
 
@@ -93,7 +93,7 @@ class Bulky
 		$search = $manager->filter()->slice( 0 , 1 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
-			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'carrier'] ), null )
+			$search->compare( '!=', $search->make( 'product:prop', ['shipping', null, 'carrier'] ), null )
 		] ) );
 
 		return count( $manager->searchItems( $search ) ) ? false : $this->getProvider()->isAvailable( $basket );
