@@ -21,16 +21,6 @@ $optAction = $this->config( 'client/jsonapi/url/action', 'options' );
 $optConfig = $this->config( 'client/jsonapi/url/config', [] );
 
 
-$classes = '';
-foreach( (array) $this->get( 'listCatPath', [] ) as $cat )
-{
-	$catConfig = $cat->getConfig();
-	if( isset( $catConfig['css-class'] ) ) {
-		$classes .= ' ' . $catConfig['css-class'];
-	}
-}
-
-
 /** client/html/catalog/lists/pagination/enable
  * Enables or disables pagination in list views
  *
@@ -75,7 +65,8 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
 }
 
 ?>
-<section class="aimeos catalog-list<?= $enc->attr( $classes ); ?>" data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+<section class="aimeos catalog-list <?= $enc->attr( $this->get( 'listCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>"
+	data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
 	<?php if( isset( $this->listErrorList ) ) : ?>
 		<ul class="error-list">
