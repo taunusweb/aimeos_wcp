@@ -8,12 +8,8 @@
 $enc = $this->encoder();
 $iface = '\Aimeos\MShop\Price\Item\Iface';
 $page = $this->get( 'pageView', 'listing' );
-$priceItems = $this->get( 'prices', [] );
+$priceItems = $this->get( 'prices', map() );
 $prices = [];
-
-if( !is_array( $priceItems ) ) {
-    $priceItems = array( $priceItems );
-}
 
 foreach( $priceItems as $priceItem )
 {

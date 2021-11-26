@@ -54,7 +54,7 @@ class CustomerPay
 
 		if( $context->getUserId() )
 		{
-			$item = \Aimeos\MShop::create( $context, 'customer' )->getItem( $context->getUserId(), ['customer/property'] );
+			$item = \Aimeos\MShop::create( $context, 'customer' )->get( $context->getUserId(), ['customer/property'] );
 			$option = current($item->getProperties( 'payment' ));
 
 			if( $option && $option === $this->getConfigValue( 'customerpay.payment' ) ) {

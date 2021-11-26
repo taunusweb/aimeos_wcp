@@ -13,7 +13,7 @@
  */
 
 
-$getProductList = function (array $posItems, array $items) {
+$getProductList = function (\Aimeos\Map $posItems, array $items) {
     $list = [];
 
     foreach ($posItems as $id => $posItem) {
@@ -94,7 +94,7 @@ if (isset($this->detailProductItem)) {
         $propMap[$propItem->getType()][$propItem->getId()] = $propItem;
         $subPropDeps[$propItem->getId()] = $propItem->getParentId();
     }
-    $oem = $this->detailProductItem->getPropertyItems('OEM-Nr.');
+    $oem = $this->detailProductItem->getPropertyItems('OEM-Nr.')->first();
 }
 
 
@@ -144,7 +144,7 @@ if (isset($this->detailProductItem)) {
                     array(
                         'productItem' => $this->detailProductItem,
                         'params' => $this->get('detailParams', []),
-                        'mediaItems' => array_merge($this->detailProductItem->getRefItems('media', 'default', 'default'), $mediaItems)
+                        'mediaItems' => $this->detailProductItem->getRefItems('media', 'default', 'default')->merge($mediaItems)
                     )
                 ); ?>
 			</div>
@@ -165,10 +165,10 @@ if (isset($this->detailProductItem)) {
 							<span class="value"><?= $enc->html($dimensions); ?></span>
 						</p>
                     <?php endif ?>
-                    <?php if ($oem !== []): ?>
+                    <?php if ($oem): ?>
 						<p class="code">
 							<span class="name"><?= $enc->html($this->translate('client', 'wcp_oem'), $enc::TRUST); ?></span>
-							<span class="value"><?= $enc->html(current($oem)->getValue()); ?></span>
+							<span class="value"><?= $enc->html($oem->getValue()); ?></span>
 						</p>
                     <?php endif ?>
                     <?php foreach ($this->detailProductItem->getRefItems('text', 'short', 'default') as $textItem) : ?>

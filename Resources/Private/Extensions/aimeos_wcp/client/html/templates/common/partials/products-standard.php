@@ -141,7 +141,6 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 				}
 			}
 
-		    $oem = [];
 			$dimensions = "";
 			$material = "";
 			$bristle = "";
@@ -163,7 +162,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 					}
 				}
 			}
-			$oem = $productItem->getPropertyItems('OEM-Nr.');
+			$oem = $productItem->getPropertyItems('OEM-Nr.')->first();
 			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 
 			$disabled = '';
@@ -187,7 +186,7 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 			<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 
 				<div class="media-list">
-					<?php if( ( $mediaItem = current( $productItem->getRefItems( 'media', 'default', 'default' ) ) ) !== false ) : ?>
+					<?php if( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) : ?>
 						<noscript>
 							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
 								<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
@@ -250,10 +249,10 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
                     <span class="value"><?= $enc->html($dimensions); ?></span>
                 </p>
             <?php endif ?>
-            <?php if ($oem !== []): ?>
+            <?php if ($oem): ?>
                 <p class="code">
                         <span class="name"><?= $enc->html($this->translate('client', 'OEM-Nr.'), $enc::TRUST); ?></span>
-                        <span class="value"><?= $enc->html(current($oem)->getValue()); ?></span>
+                        <span class="value"><?= $enc->html($oem->getValue()); ?></span>
                 </p>
             <?php endif ?>
 

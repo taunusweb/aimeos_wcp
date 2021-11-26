@@ -330,6 +330,6 @@ class XmlWeber
 			}
 		}
 
-		$manager->saveItems( $items );
+		$manager->save( $items );
 	}
 }
