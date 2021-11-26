@@ -62,7 +62,7 @@ class Bulky
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
-		$search = $manager->createSearch()->setSlice( 0 , 10000 );
+		$search = $manager->filter()->setSlice( 0 , 10000 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
 			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'bulky'] ), null )
@@ -90,7 +90,7 @@ class Bulky
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
-		$search = $manager->createSearch()->setSlice( 0 , 1 );
+		$search = $manager->filter()->setSlice( 0 , 1 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
 			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'carrier'] ), null )
