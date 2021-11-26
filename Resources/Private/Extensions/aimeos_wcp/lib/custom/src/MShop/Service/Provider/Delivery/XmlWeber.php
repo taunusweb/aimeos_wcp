@@ -104,7 +104,7 @@ class XmlWeber
 		if( $baseItem->getCustomerId() )
 		{
 			$manager = \Aimeos\MShop::create( $this->getContext(), 'customer' );
-			$search = $manager->filter()->setSlice( 0, 1 );
+			$search = $manager->filter()->slice( 0, 1 );
 			$search->setConditions( $search->compare( '==', 'customer.id', $baseItem->getCustomerId() ) );
 			$customerItems = $manager->searchItems( $search );
 		}
@@ -132,7 +132,7 @@ class XmlWeber
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'customer' );
-		$search = $manager->filter()->setSlice( 0, count( $orders ) );
+		$search = $manager->filter()->slice( 0, count( $orders ) );
 		$search->setConditions( $search->compare( '==', 'customer.id', $custIds ) );
 		$customerItems = $manager->searchItems( $search );
 
@@ -250,7 +250,7 @@ class XmlWeber
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'order/base' );
-		$search = $manager->filter()->setSlice( 0, count( $ids ) );
+		$search = $manager->filter()->slice( 0, count( $ids ) );
 		$search->setConditions( $search->compare( '==', 'order.base.id', array_keys( $ids ) ) );
 
 		return $manager->searchItems( $search, $ref );
@@ -313,7 +313,7 @@ class XmlWeber
 	protected function importNodes( array $nodes )
 	{
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'order' );
-		$search = $manager->filter()->setSlice( 0, count( $nodes ) );
+		$search = $manager->filter()->slice( 0, count( $nodes ) );
 		$search->setConditions( $search->compare( '==', 'order.id', array_keys( $nodes ) ) );
 		$items = $manager->searchItems( $search );
 

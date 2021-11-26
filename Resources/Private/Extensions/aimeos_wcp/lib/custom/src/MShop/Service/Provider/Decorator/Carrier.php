@@ -28,7 +28,7 @@ class Carrier
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
-		$search = $manager->filter()->setSlice( 0 , 1 );
+		$search = $manager->filter()->slice( 0 , 1 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
 			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'carrier'] ), null )
