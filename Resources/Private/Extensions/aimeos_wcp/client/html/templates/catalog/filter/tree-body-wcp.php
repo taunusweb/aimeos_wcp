@@ -9,11 +9,11 @@
 
 $enc = $this->encoder();
 $params = $this->param();
-$path = $this->get( 'treeCatalogPath', [] );
+$path = $this->get( 'treeCatalogPath', map() );
 $counts = $this->config( 'client/html/catalog/count/enable', true );
 $currentLevel=0;
 $name = '';
-if( ( $node = end( $path ) ) !== false ) {
+if( $node = $path->last() ) {
     $name = $node->getName();
     $currentLevel = $node->getLevel();
 }
