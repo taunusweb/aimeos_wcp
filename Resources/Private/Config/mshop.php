@@ -19,15 +19,14 @@ return [
 	],
 	'index' => [
 		'manager' => [
+			'chunksize' => 100,
 			'name' => 'Solr',
-			'standard' => [
-				'domains' => [
-					'catalog' => 'catalog',
-					'attribute' => 'attribute',
-					'product' => ['default'],
-					'price' => ['default'],
-					'text' => 'text',
-				],
+			'domains' => [
+				'catalog' => 'catalog',
+				'attribute' => 'attribute',
+				'product' => ['default'],
+				'price' => ['default'],
+				'text' => 'text',
 			],
 			'attribute' => [
 				'name' => 'Solr'

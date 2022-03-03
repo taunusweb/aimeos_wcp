@@ -45,7 +45,7 @@ class Appointment
 	);
 
 
-	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Price\Item\Iface
 	{
 		$price = $this->getProvider()->calcPrice( $basket );
 		$args = func_get_args(); // additional config parameter
@@ -58,7 +58,7 @@ class Appointment
 	}
 
 
-	public function checkConfigBE( array $attributes )
+	public function checkConfigBE( array $attributes ) : array
 	{
 		$error = $this->getProvider()->checkConfigBE( $attributes );
 		$error += $this->checkConfig( $this->beConfig, $attributes );
@@ -74,7 +74,7 @@ class Appointment
 	}
 
 
-	public function getConfigBE()
+	public function getConfigBE() : array
 	{
 		return array_merge( $this->getProvider()->getConfigBE(), $this->getConfigItems( $this->beConfig ) );
 	}
@@ -82,6 +82,19 @@ class Appointment
 
 	public function getConfigFE( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : array
 	{
-		return array_merge( $this->getProvider()->getConfigFE( $basket ), $this->getConfigItems( $this->feConfig ) );
+		$feconfig = $this->feConfig;
+
+		try
+		{
+			$type = \Aimeos\MShop\Order\Item\Base\Service\Base::TYPE_DELIVERY;
+			$service = $this->getBasketService( $basket, $type, $this->getServiceItem()->getCode() );
+
+			if( ( $value = $service->getAttribute( 'appointment.option', 'delivery' ) ) != '' ) {
+				$feconfig['appointment.option']['default'] = $value;
+			}
+		}
+		catch( \Aimeos\MShop\Service\Exception $e ) {} // If service isn't available
+
+		return array_merge( $this->getProvider()->getConfigFE( $basket ), $this->getConfigItems( $feconfig ) );
 	}
 }

@@ -33,7 +33,7 @@ class CustomerPay
 	);
 
 
-	public function checkConfigBE( array $attributes )
+	public function checkConfigBE( array $attributes ) : array
 	{
 		$error = $this->getProvider()->checkConfigBE( $attributes );
 		$error += $this->checkConfig( $this->beConfig, $attributes );
@@ -42,19 +42,19 @@ class CustomerPay
 	}
 
 
-	public function getConfigBE()
+	public function getConfigBE() : array
 	{
 		return array_merge( $this->getProvider()->getConfigBE(), $this->getConfigItems( $this->beConfig ) );
 	}
 
 
-	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
 	{
 		$context = $this->getContext();
 
 		if( $context->getUserId() )
 		{
-			$item = \Aimeos\MShop::create( $context, 'customer' )->getItem( $context->getUserId(), ['customer/property'] );
+			$item = \Aimeos\MShop::create( $context, 'customer' )->get( $context->getUserId(), ['customer/property'] );
 			$option = current($item->getProperties( 'payment' ));
 
 			if( $option && $option === $this->getConfigValue( 'customerpay.payment' ) ) {

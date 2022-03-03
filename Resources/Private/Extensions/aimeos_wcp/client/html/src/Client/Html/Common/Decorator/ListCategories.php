@@ -6,7 +6,7 @@ class ListCategories
 	extends \Aimeos\Client\Html\Common\Decorator\Base
 	implements \Aimeos\Client\Html\Common\Decorator\Iface
 {
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = array(), &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = array(), string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$view = parent::addData( $view, $tags, $expire );
 

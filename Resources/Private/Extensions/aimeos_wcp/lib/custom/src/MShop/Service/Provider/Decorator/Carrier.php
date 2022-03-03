@@ -20,7 +20,7 @@ class Carrier
 	extends \Aimeos\MShop\Service\Provider\Decorator\Base
 	implements \Aimeos\MShop\Service\Provider\Decorator\Iface
 {
-	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
 	{
 		$prodIds = [];
 		foreach( $basket->getProducts() as $orderProduct ) {
@@ -28,12 +28,12 @@ class Carrier
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
-		$search = $manager->createSearch()->setSlice( 0 , 1 );
+		$search = $manager->filter()->slice( 0 , 1 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
-			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'carrier'] ), null )
+			$search->compare( '!=', $search->make( 'product:prop', ['shipping', null, 'carrier'] ), null )
 		] ) );
 
-		return count( $manager->searchItems( $search ) ) ? $this->getProvider()->isAvailable( $basket ) : false;
+		return count( $manager->search( $search ) ) ? $this->getProvider()->isAvailable( $basket ) : false;
 	}
 }

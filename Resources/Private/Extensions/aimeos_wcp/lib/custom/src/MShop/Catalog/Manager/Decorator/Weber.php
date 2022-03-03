@@ -58,7 +58,7 @@ class Weber extends Base
 	}
 
 
-	public function getSearchAttributes( $sub = true )
+	public function getSearchAttributes( bool $sub = true ) : array
 	{
 		return parent::getSearchAttributes( $sub ) + $this->createAttributes( $this->attr );
 	}

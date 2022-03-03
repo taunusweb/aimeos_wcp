@@ -1,16 +1,5 @@
 <?php
 
-$cattarget = $this->config( 'client/html/catalog/lists/url/target' );
-$catcntl = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$cataction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$catconfig = $this->config( 'client/html/catalog/lists/url/config', [] );
-
-$target = $this->config( 'client/html/catalog/detail/url/target' );
-$cntl = $this->config( 'client/html/catalog/detail/url/controller', 'catalog' );
-$action = $this->config( 'client/html/catalog/detail/url/action', 'detail' );
-$config = $this->config( 'client/html/catalog/detail/url/config', [] );
-$filter = array_flip( $this->config( 'client/html/catalog/detail/url/filter', ['d_prodid'] ) );
-
 $items = [];
 $enc = $this->encoder();
 
@@ -20,21 +9,15 @@ $priceFormat = $this->translate( 'client', '%1$s %2$s' );
 
 foreach( $this->get( 'suggestCatalogItems', [] ) as $id => $catItem )
 {
-	$media = $this->config( 'controller/common/media/standard/options/image/watermark');
 	$name = strip_tags( $catItem->getName() );
-	$mediaItems = $catItem->getRefItems( 'media', 'default', 'default' );
+	$media = $catItem->getRefItems( 'media', 'default', 'default' )->getPreview()->first() ?: '../../typo3conf/ext/aimeos_wcp/Resources/Public/wasserzeichen.png';
 
-	if( ( $mediaItem = reset( $mediaItems ) ) !== false ) {
-		$media = $this->content( $mediaItem->getPreview() );
-	}
-
-	$params = ['f_name' => $catItem->getName( 'url' ), 'f_catid' => $catItem->getId()];
 	$items[] = array(
 		'label' => $name,
 		'html' => '
 			<li class="aimeos catalog-suggest">
-				<a class="suggest-item" href="' . $enc->attr( $this->url( $cattarget, $catcntl, $cataction, $params, [], $catconfig ) ) . '">
-					<div class="item-image" style="background-image: url(' . $enc->attr( $media ) . ')"></div>
+				<a class="suggest-item" href="' . $enc->attr( $this->link( 'client/html/catalog/lists/url', ['f_name' => $catItem->getName( 'url' ), 'f_catid' => $catItem->getId()] ) ) . '">
+					<div class="item-image" style="background-image: url(' . $enc->attr( $this->content( $media ) ) . ')"></div>
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 				</a>
 			</li>
@@ -44,27 +27,20 @@ foreach( $this->get( 'suggestCatalogItems', [] ) as $id => $catItem )
 
 foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 {
-	$media = $this->config( 'controller/common/media/standard/options/image/watermark');
-    $price = '';
+	$price = '';
 	$name = strip_tags( $productItem->getName() );
-	$mediaItems = $productItem->getRefItems( 'media', 'default', 'default' );
-	$priceItems = $productItem->getRefItems( 'price', 'default', 'default' );
+	$media = $productItem->getRefItems( 'media', 'default', 'default' )->getPreview()->first() ?: '../../typo3conf/ext/aimeos_wcp/Resources/Public/wasserzeichen.png';
 
-	if( ( $mediaItem = reset( $mediaItems ) ) !== false ) {
-		$media = $this->content( $mediaItem->getPreview() );
-	}
-
-	if( ( $priceItem = reset( $priceItems ) ) !== false ) {
+	if( $priceItem = $productItem->getRefItems( 'price', 'default', 'default' )->first() ) {
 		$price = sprintf( $priceFormat, $this->number( $priceItem->getValue(), $priceItem->getPrecision() ), $this->translate( 'currency', $priceItem->getCurrencyId() ) );
 	}
 
-	$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''], $filter );
 	$items[] = array(
 		'label' => $name,
 		'html' => '
 			<li class="aimeos catalog-suggest">
-				<a class="suggest-item" href="' . $enc->attr( $this->url( $target, $cntl, $action, $params, [], $config ) ) . '">
-					<div class="item-image" style="background-image: url(' . $enc->attr( $media ) . ')"></div>
+				<a class="suggest-item" href="' . $enc->attr( $this->link( 'client/html/catalog/detail/url', ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ) ) . '">
+					<div class="item-image" style="background-image: url(' . $enc->attr( $this->content( $media ) ) . ')"></div>
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 				</a>
 			</li>

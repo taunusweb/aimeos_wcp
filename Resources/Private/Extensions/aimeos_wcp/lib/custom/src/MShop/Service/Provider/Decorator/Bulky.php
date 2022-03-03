@@ -33,7 +33,7 @@ class Bulky
 	);
 
 
-	public function checkConfigBE( array $attributes )
+	public function checkConfigBE( array $attributes ) : array
 	{
 		$error = $this->getProvider()->checkConfigBE( $attributes );
 		$error += $this->checkConfig( $this->beConfig, $attributes );
@@ -42,13 +42,13 @@ class Bulky
 	}
 
 
-	public function getConfigBE()
+	public function getConfigBE() : array
 	{
 		return array_merge( $this->getProvider()->getConfigBE(), $this->getConfigItems( $this->beConfig ) );
 	}
 
 
-	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	public function calcPrice( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : \Aimeos\MShop\Price\Item\Iface
 	{
 		$config = $this->getServiceItem()->getConfig();
 
@@ -62,12 +62,12 @@ class Bulky
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
-		$search = $manager->createSearch()->setSlice( 0 , 10000 );
+		$search = $manager->filter()->slice( 0 , 10000 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
-			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'bulky'] ), null )
+			$search->compare( '!=', $search->make( 'product:prop', ['shipping', null, 'bulky'] ), null )
 		] ) );
-		$products = $manager->searchItems( $search );
+		$products = $manager->search( $search );
 
 		$qty = 0;
 		foreach( $basket->getProducts() as $orderProduct )
@@ -82,7 +82,7 @@ class Bulky
 	}
 
 
-	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket )
+	public function isAvailable( \Aimeos\MShop\Order\Item\Base\Iface $basket ) : bool
 	{
 		$prodIds = [];
 		foreach( $basket->getProducts() as $orderProduct ) {
@@ -90,12 +90,12 @@ class Bulky
 		}
 
 		$manager = \Aimeos\MShop::create( $this->getContext(), 'product' );
-		$search = $manager->createSearch()->setSlice( 0 , 1 );
+		$search = $manager->filter()->slice( 0 , 1 );
 		$search->setConditions( $search->combine( '&&', [
 			$search->compare( '==', 'product.id', $prodIds ),
-			$search->compare( '!=', $search->createFunction( 'product:prop', ['shipping', null, 'carrier'] ), null )
+			$search->compare( '!=', $search->make( 'product:prop', ['shipping', null, 'carrier'] ), null )
 		] ) );
 
-		return count( $manager->searchItems( $search ) ) ? false : $this->getProvider()->isAvailable( $basket );
+		return count( $manager->search( $search ) ) ? false : $this->getProvider()->isAvailable( $basket );
 	}
 }

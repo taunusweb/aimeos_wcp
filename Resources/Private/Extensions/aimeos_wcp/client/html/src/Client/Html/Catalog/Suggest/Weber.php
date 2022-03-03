@@ -5,7 +5,7 @@ namespace Aimeos\Client\Html\Catalog\Suggest;
 
 class Weber extends Standard
 {
-	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], &$expire = null )
+	public function addData( \Aimeos\MW\View\Iface $view, array &$tags = [], string &$expire = null ) : \Aimeos\MW\View\Iface
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
