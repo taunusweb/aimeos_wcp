@@ -98,7 +98,6 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
  * @since 2015.08
  * @category Developer
  */
-
 ?>
 <div class="level-<?= $enc->attr( $level ); ?> d-flex flex-wrap  align-content-center mb-3">
     <?php foreach( $this->get( 'nodes', [] ) as $item ) : ?>
@@ -108,7 +107,7 @@ $config = $this->config( 'client/html/catalog/tree/url/config', [] );
             <?php $class = ( $item->hasChildren() ? ' withchild' : ' nochild' ) . ( isset( $path[$id] ) ? ' active' : '' ); ?>
             <?php $class .= ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
             <?php if ($this->get( 'currentLevel', 0 ) < $item->getLevel()) : ?>
-			<div class="<?= $level; ?> <?= $item->getLevel(); ?>  cat-item p-3 catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
+			<div class="<?= $level; ?> <?= $item->getLevel(); ?>  cat-item p-2 catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
 				<a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
 					--><div class="media-list"><!--
 

@@ -152,20 +152,8 @@ foreach( $this->get( 'deliveryHidden', [] ) as $name ) {
 		/// address part one (%6$s, e.g street), address part two (%7$s, e.g house number), address part three (%8$s, e.g additional information),
 		/// postal/zip code (%9$s), city (%10$s), state (%11$s), country (%12$s), language (%13$s),
 		/// e-mail (%14$s), phone (%15$s), facsimile/telefax (%16$s), web site (%17$s), vatid (%18$s)
-		$this->translate( 'client', '%1$s
-%2$s %3$s %4$s %5$s
-%6$s %7$s
-%8$s
-%9$s %10$s
-%11$s
-%12$s
-%13$s
-%14$s
-%15$s
-%16$s
-%17$s
-%18$s
-'
+		$this->translate( 'client', '%1$s, %5$s
+%9$s %10$s, %12$s'
 		),
 		$addr->getCompany(),
 		( !in_array( $addr->getSalutation(), array( 'company' ) ) ? $this->translate( 'mshop/code', $addr->getSalutation() ) : '' ),
