@@ -238,9 +238,9 @@ class XmlWeber
 	 * Returns the order base items for the given orders
 	 *
 	 * @param \Aimeos\MShop\Order\Item\Iface[] $orderItems List of order items
-	 * @return \Aimeos\MShop\Order\Item\Base\Iface[] Associative list of IDs as keys and order base items as values
+	 * @return \Aimeos\Map Associative list of IDs as keys and order base items as values
 	 */
-	protected function getOrderBaseItems( array $orderItems ) : array
+	protected function getOrderBaseItems( array $orderItems ) : \Aimeos\Map
 	{
 		$ids = [];
 		$ref = ['order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
