@@ -136,13 +136,13 @@ class XmlWeber
 		$search->setConditions( $search->compare( '==', 'customer.id', $custIds ) );
 		$customerItems = $manager->search( $search );
 
-		$this->createFile( $this->createXml( $orders->all(), $baseItems, $customerItems ) );
+		$this->createFile( $this->createXml( $orders, $baseItems, $customerItems ) );
 
 		foreach( $orders as $key => $order ) {
 			$orders[$key] = $order->setDeliveryStatus( \Aimeos\MShop\Order\Item\Base::STAT_PROGRESS );
 		}
 
-		return $orders;
+		return map( $orders );
 	}
 
 
@@ -221,7 +221,7 @@ class XmlWeber
 	 * @param \Aimeos\MShop\Customer\Item\Iface[] $customerItems List of customer items who placed the orders
 	 * @return string Generated XML
 	 */
-	protected function createXml( array $orderItems, array $baseItems, array $customerItems ) : string
+	protected function createXml( iterable $orderItems, iterable $baseItems, iterable $customerItems ) : string
 	{
 		$view = $this->getContext()->getView();
 		$template = $this->getConfigValue( 'xml.template', 'service/provider/delivery/xml-body-standard' );
