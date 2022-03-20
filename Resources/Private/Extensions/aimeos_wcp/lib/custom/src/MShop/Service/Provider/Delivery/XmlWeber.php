@@ -109,7 +109,7 @@ class XmlWeber
 			$customerItems = $manager->search( $search );
 		}
 
-		$this->createFile( $this->createXml( [$order], [$baseItem->getId() => $baseItem], $customerItems ) );
+		$this->createFile( $this->createXml( $order], [$baseItem->getId() => $baseItem], $customerItems ) );
 
 		return $order->setDeliveryStatus( \Aimeos\MShop\Order\Item\Base::STAT_PROGRESS );
 	}
@@ -136,7 +136,7 @@ class XmlWeber
 		$search->setConditions( $search->compare( '==', 'customer.id', $custIds ) );
 		$customerItems = $manager->search( $search );
 
-		$this->createFile( $this->createXml( $orders, $baseItems, $customerItems ) );
+		$this->createFile( $this->createXml( $orders->all(), $baseItems, $customerItems ) );
 
 		foreach( $orders as $key => $order ) {
 			$orders[$key] = $order->setDeliveryStatus( \Aimeos\MShop\Order\Item\Base::STAT_PROGRESS );
