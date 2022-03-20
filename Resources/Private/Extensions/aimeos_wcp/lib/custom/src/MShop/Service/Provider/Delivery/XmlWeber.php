@@ -109,7 +109,7 @@ class XmlWeber
 			$customerItems = $manager->search( $search );
 		}
 
-		$this->createFile( $this->createXml( $order], [$baseItem->getId() => $baseItem], $customerItems ) );
+		$this->createFile( $this->createXml( [$order], [$baseItem->getId() => $baseItem], $customerItems ) );
 
 		return $order->setDeliveryStatus( \Aimeos\MShop\Order\Item\Base::STAT_PROGRESS );
 	}
