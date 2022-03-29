@@ -202,8 +202,8 @@ class XmlWeber
 	 */
 	protected function createFile( string $content )
 	{
-		$filepath = $this->getConfigValue( 'xml.exportpath', './order_%Y-%m-%d_%T_%%d.xml' );
-		$filepath = sprintf( strftime( $filepath ), $this->num++ );
+		$filepath = $this->getConfigValue( 'xml.exportpath', './order_%Y-%m-%d_%H:%i:%s_%v.xml' );
+		$filepath = sprintf( \Aimeos\Base\Str::strtime( $filepath ), $this->num++ );
 
 		if( file_put_contents( $filepath, $content ) === false )
 		{
