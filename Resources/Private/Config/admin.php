@@ -2,6 +2,9 @@
 
 return array(
 	'jqadm' => array(
+		'order' => [
+			'fields' => ['order.id', 'order.ctime', 'order.statuspayment', 'order.base.address.company']
+		],
 		'url' => array(
 			'copy' => array(
 				'config' => array(
