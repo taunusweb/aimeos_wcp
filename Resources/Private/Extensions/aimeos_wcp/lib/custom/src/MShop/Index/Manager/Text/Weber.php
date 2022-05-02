@@ -74,19 +74,19 @@ class Weber extends \Aimeos\MShop\Index\Manager\Text\Solr
 
 		$this->searchConfig['index.text:relevance']['function'] = function( &$source, array $params ) {
 
-			$string = addcslashes( $params[1], '+-&|!(){}[]^"~*?:/' );
+			$text = addcslashes( $params[1], '+-&|!(){}[]^"~*?:/' );
 
 			$source['bool']['should'][] = 'product.code:"' . $text . '"^1000';
 			$source['bool']['should'][] = 'product.code:"' . $text . '*"^750';
 
 			$text = str_replace( ['.', '-', ',', '"', '\\'], '', $text );
 
-			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':("' . $text . '")^450';
-			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':("' . $text . '"*)^300';
-			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':("' . $text . '")^150';
-			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':("' . $text . '"*)^50';
-			$source['bool']['should'][] = 'index.text.content_:("' . $text . '")^800';
-			$source['bool']['should'][] = 'index.text.content_:("' . $text . '"*)^600';
+			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':"' . $text . '"^450';
+			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':"' . $text . '*"^300';
+			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':"' . $text . '"^150';
+			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':"' . $text . '*"^50';
+			$source['bool']['should'][] = 'index.text.content_:"' . $text . '"^800';
+			$source['bool']['should'][] = 'index.text.content_:"' . $text . '*"^600';
 
 			return $params;
 		};
