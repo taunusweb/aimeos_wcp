@@ -2211,17 +2211,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 	padding: 1% 0;
 }
 
-.catalog-detail-additional .header {
-	cursor: pointer;
-}
-
-.catalog-detail-additional .header:after {
-	font: normal normal normal 14px/1 FontAwesome;
-	font-size: 120%;
-	content: "\f196";
-	float: right;
-}
-
 [dir="rtl"] .catalog-detail-additional .header:after {
 	float: left;
 }
@@ -2237,14 +2226,6 @@ html.no-js .catalog-filter-price:hover .price-lists {
 
 .catalog-detail-additional .item {
 	padding: 1%;
-}
-
-/* Hide attributes and properties from sub-products*/
-.catalog-detail-additional .subproduct {
-	display: none;
-}
-.catalog-detail-additional .subproduct-actual {
-	display: table-row;
 }
 
 /* Product detail, additional attributes/properties section */
