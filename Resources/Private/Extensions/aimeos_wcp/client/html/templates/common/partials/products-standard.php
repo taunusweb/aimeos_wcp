@@ -20,13 +20,13 @@ $productItems = $this->get( 'productItems', [] );
 
 if( $this->get( 'basket-add', false ) )
 {
-	$basketTarget = $this->config( 'client/html/basket/standard/url/target' );
-	$basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
-	$basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
-	$basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
-	$basketSite = $this->config( 'client/html/basket/standard/url/site' );
+    $basketTarget = $this->config( 'client/html/basket/standard/url/target' );
+    $basketController = $this->config( 'client/html/basket/standard/url/controller', 'basket' );
+    $basketAction = $this->config( 'client/html/basket/standard/url/action', 'index' );
+    $basketConfig = $this->config( 'client/html/basket/standard/url/config', [] );
+    $basketSite = $this->config( 'client/html/basket/standard/url/site' );
 
-	$basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
+    $basketParams = ( $basketSite ? ['site' => $basketSite] : [] );
 }
 
 
@@ -133,251 +133,251 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
 
 	<?php foreach( $this->get( 'products', [] ) as $id => $productItem ) : ?>
 		<?php
-			$longText = "";
-			$listAttributes = $productItem->getListItems('text');
-			foreach ($listAttributes as $textListItems) {
-				if ($textListItems->getPosition() == 1  && $textListItems->getRefItem()->getType() == "long") {
-					$longText = '<div class="text-item-tooltip"><span class="info">i</span><span class="tooltip-text">'.$enc->html( $textListItems->getRefItem()->getContent(), $enc::TRUST ).'</span></div>';
-				}
-			}
+    $longText = "";
+    $listAttributes = $productItem->getListItems('text');
+    foreach ($listAttributes as $textListItems) {
+        if ($textListItems->getPosition() == 1  && $textListItems->getRefItem()->getType() == "long") {
+            $longText = '<div class="text-item-tooltip"><span class="info">i</span><span class="tooltip-text">'.$enc->html( $textListItems->getRefItem()->getContent(), $enc::TRUST ).'</span></div>';
+        }
+    }
 
-			$dimensions = "";
-			$material = "";
-			$bristle = "";
-			$listAttributes = $productItem->getListItems('attribute');
-			foreach ($listAttributes as $attrListItems) {
-				if (($attrItem = $attrListItems->getRefItem()) !== null) {
-					if ($attrItem->getType() == "Abmessungen") {
-						$dimensions = $attrItem->getLabel();
-					}
-				}
-				if (($attrItem = $attrListItems->getRefItem()) !== null) {
-					if ($attrItem->getType() == "Materialart") {
-						$material = $attrItem->getLabel();
-					}
-				}
-				if (($attrItem = $attrListItems->getRefItem()) !== null) {
-					if ($attrItem->getType() == "Borste") {
-						$bristle = $attrItem->getLabel();
-					}
-				}
-			}
-			$oem = $productItem->getPropertyItems('OEM-Nr.')->first();
-			$params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
+    $dimensions = "";
+    $material = "";
+    $bristle = "";
+    $listAttributes = $productItem->getListItems('attribute');
+    foreach ($listAttributes as $attrListItems) {
+        if (($attrItem = $attrListItems->getRefItem()) !== null) {
+            if ($attrItem->getType() == "Abmessungen") {
+                $dimensions = $attrItem->getLabel();
+            }
+        }
+        if (($attrItem = $attrListItems->getRefItem()) !== null) {
+            if ($attrItem->getType() == "Materialart") {
+                $material = $attrItem->getLabel();
+            }
+        }
+        if (($attrItem = $attrListItems->getRefItem()) !== null) {
+            if ($attrItem->getType() == "Borste") {
+                $bristle = $attrItem->getLabel();
+            }
+        }
+    }
+    $oem = $productItem->getPropertyItems('OEM-Nr.')->first();
+    $params = array_diff_key( ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => $position !== null ? $position++ : ''], $detailFilter );
 
-			$disabled = '';
-			$curdate = date( 'Y-m-d H:i:00' );
+    $disabled = '';
+    $curdate = date( 'Y-m-d H:i:00' );
 
-			if( ( $startDate = $productItem->getDateStart() ) !== null && $startDate > $curdate
-				|| ( $endDate = $productItem->getDateEnd() ) !== null && $endDate < $curdate
-			) {
-				$disabled = 'disabled';
-			}
-		?>
+    if( ( $startDate = $productItem->getDateStart() ) !== null && $startDate > $curdate
+        || ( $endDate = $productItem->getDateEnd() ) !== null && $endDate < $curdate
+    ) {
+        $disabled = 'disabled';
+    }
+    ?>
 
 		--><li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ); ?>"
-			data-reqstock="<?= (int) $this->get( 'require-stock', true ); ?>"
-			data-score="<?= $enc->attr( $productItem->score ) ?>"
-			itemprop="<?= $this->get( 'itemprop' ); ?>"
-			itemtype="http://schema.org/Product"
-			itemscope="" >
+			   data-reqstock="<?= (int) $this->get( 'require-stock', true ); ?>"
+			   data-score="<?= $enc->attr( $productItem->score ) ?>"
+			   itemprop="<?= $this->get( 'itemprop' ); ?>"
+			   itemtype="http://schema.org/Product"
+			   itemscope="" >
 
 
-			<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
+		<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
 
-				<div class="media-list">
-					<?php if( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) : ?>
-						<noscript>
-							<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
-								<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
-								<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
-							</div>
-						</noscript>
-
-						<?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-							<div class="media-item">
-								<img class="lazy-image"
-									src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
-									data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
-									data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
-									alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
-								/>
-							</div>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</div>
-
-				<div class="text-list">
-					<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
-
-					<h3>
-						<span class="name"><?= $enc->html($this->translate('client', 'Article no.'), $enc::TRUST); ?>: </span>
-						<?= $enc->html( $productItem->getCode(), $enc::TRUST ); ?>
-                        <?= $longText ?>
-
-					</h3>
-
-					<?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
-						<div class="text-item" itemprop="description">
-                            <div class="text-item-tooltip">
-                                <?= $enc->html(mb_strimwidth($textItem->getContent(), 0, 70, "...") , $enc::TRUST ); ?><br/>
-                                <span class="tooltip-text">
-                                    <?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
-                                </span>
-                            </div>
-					</div>
-					<?php endforeach; ?>
-				</div>
-
-			</a>
-
-            <?php if ($bristle !== ""): ?>
-                <p class="code">
-                    <span class="name"><?= $enc->html($this->translate('client', 'Borste:'), $enc::TRUST); ?></span>
-                    <span class="value"><?= $enc->html($bristle); ?></span>
-                </p>
-            <?php endif ?>
-            <?php if ($material !== ""): ?>
-                <p class="code">
-                    <span class="name"><?= $enc->html($this->translate('client', 'Materialart:'), $enc::TRUST); ?></span>
-                    <span class="value"><?= $enc->html($material); ?></span>
-                        </p>
-            <?php endif ?>
-            <?php if ($dimensions !== ""): ?>
-                <p class="code">
-                    <span class="name sr-only"><?= $enc->html($this->translate('client', 'Abmessungen'), $enc::TRUST); ?></span>
-                    <span class="value"><?= $enc->html($dimensions); ?></span>
-                </p>
-            <?php endif ?>
-            <?php if ($oem): ?>
-                <p class="code">
-                        <span class="name"><?= $enc->html($this->translate('client', 'OEM-Nr.'), $enc::TRUST); ?></span>
-                        <span class="value"><?= $enc->html($oem->getValue()); ?></span>
-                </p>
-            <?php endif ?>
-
-
-			<div class="offer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-
-				<div class="stock-list">
-					<div class="articleitem stock-actual"
-						data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
-						data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
-					</div>
-					<?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
-						<div class="articleitem"
-							data-prodid="<?= $enc->attr( $articleId ); ?>"
-							data-prodcode="<?= $enc->attr( $articleItem->getCode() ); ?>">
+			<div class="media-list">
+                <?php if( $mediaItem = $productItem->getRefItems( 'media', 'default', 'default' )->first() ) : ?>
+					<noscript>
+						<div class="media-item" itemscope="" itemtype="http://schema.org/ImageObject">
+							<img src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" alt="<?= $enc->attr( $mediaItem->getName() ); ?>" />
+							<meta itemprop="contentUrl" content="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>" />
 						</div>
-					<?php endforeach; ?>
-				</div>
+					</noscript>
 
-				<div class="price-list">
-					<div class="articleitem price price-actual"
-						data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
-						data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
-						<?php $priceItems = $productItem->getRefItems( 'price', null, 'default' ); ?>
-						<?= $this->partial(
-							/** client/html/common/partials/price
-							 * Relative path to the price partial template file
-							 *
-							 * Partials are templates which are reused in other templates and generate
-							 * reoccuring blocks filled with data from the assigned values. The price
-							 * partial creates an HTML block for a list of price items.
-							 *
-							 * The partial template files are usually stored in the templates/partials/ folder
-							 * of the core or the extensions. The configured path to the partial file must
-							 * be relative to the templates/ folder, e.g. "partials/price-standard.php".
-							 *
-							 * @param string Relative path to the template file
-							 * @since 2015.04
-							 * @category Developer
-							 */
-							$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-							array( 'prices' => $priceItems )
-						); ?>
-					</div>
-
-					<?php if( $productItem->getType() === 'select' ) : ?>
-						<?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
-							<?php if( isset( $productItems[$prodid] ) ) { $product = $productItems[$prodid]; } ?>
-
-							<?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
-								<div class="articleitem price"
-									data-prodid="<?= $enc->attr( $prodid ); ?>"
-									data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
-									<?= $this->partial(
-										$this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
-										array( 'prices' => $prices )
-									); ?>
-								</div>
-							<?php endif; ?>
-
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</div>
-
+                    <?php foreach( $productItem->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+						<div class="media-item">
+							<img class="lazy-image"
+								 src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEEAAEALAAAAAABAAEAAAICTAEAOw=="
+								 data-src="<?= $enc->attr( $this->content( $mediaItem->getPreview() ) ); ?>"
+								 data-srcset="<?= $enc->attr( $this->imageset( $mediaItem->getPreviews() ) ) ?>"
+								 alt="<?= $enc->attr( $mediaItem->getName() ); ?>"
+							/>
+						</div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 			</div>
 
+			<div class="text-list">
+				<h2 itemprop="name"><?= $enc->html( $productItem->getName(), $enc::TRUST ); ?></h2>
 
-			<?php if( $this->get( 'basket-add', false ) ) : ?>
-				<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
-					<!-- catalog.lists.items.csrf -->
-					<?= $this->csrf()->formfield(); ?>
-					<!-- catalog.lists.items.csrf -->
+				<h3>
+					<span class="name"><?= $enc->html($this->translate('client', 'Article no.'), $enc::TRUST); ?>: </span>
+                    <?= $enc->html( $productItem->getCode(), $enc::TRUST ); ?>
+                    <?= $longText ?>
 
-					<?php if( $basketSite ) : ?>
-						<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
-					<?php endif ?>
+				</h3>
 
-					<?php if( $productItem->getType() === 'select' ) : ?>
-						<div class="items-selection">
-							<?= $this->partial(
-								$this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
-								array(
-									'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
-									'productItems' => $this->get( 'productItems', [] ),
-									'productItem' => $productItem,
-								)
-							); ?>
+                <?php foreach( $productItem->getRefItems( 'text', 'short', 'default' ) as $textItem ) : ?>
+					<div class="text-item" itemprop="description">
+						<div class="text-item-tooltip">
+                            <?= $enc->html(mb_strimwidth($textItem->getContent(), 0, 70, "...") , $enc::TRUST ); ?><br/>
+							<span class="tooltip-text">
+                                    <?= $enc->html( $textItem->getContent(), $enc::TRUST ); ?>
+                                </span>
 						</div>
-					<?php endif; ?>
-
-					<div class="items-attribute">
-						<?= $this->partial(
-							$this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
-							array(
-								'productItem' => $productItem,
-								'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
-								'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
-								'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),
-							)
-						); ?>
 					</div>
+                <?php endforeach; ?>
+			</div>
 
-					<div class="addbasket">
-						<div class="input-group">
-							<input type="hidden" value="add"
-								name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
-							/>
-							<input type="hidden" value="<?= $id; ?>"
-								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
-							/>
-							<input type="number" class="form-control" value="1"
-								 min="1" max="2147483647" maxlength="10" step="1" required="required" <?= $disabled ?>
-								name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
-							/><!--
+		</a>
+
+        <?php if ($bristle !== ""): ?>
+			<p class="code">
+				<span class="name"><?= $enc->html($this->translate('client', 'Borste:'), $enc::TRUST); ?></span>
+				<span class="value"><?= $enc->html($bristle); ?></span>
+			</p>
+        <?php endif ?>
+        <?php if ($material !== ""): ?>
+			<p class="code">
+				<span class="name"><?= $enc->html($this->translate('client', 'Materialart:'), $enc::TRUST); ?></span>
+				<span class="value"><?= $enc->html($material); ?></span>
+			</p>
+        <?php endif ?>
+        <?php if ($dimensions !== ""): ?>
+			<p class="code">
+				<span class="name sr-only"><?= $enc->html($this->translate('client', 'Abmessungen'), $enc::TRUST); ?></span>
+				<span class="value"><?= $enc->html($dimensions); ?></span>
+			</p>
+        <?php endif ?>
+        <?php if ($oem): ?>
+			<p class="code">
+				<span class="name"><?= $enc->html($this->translate('client', 'OEM-Nr.'), $enc::TRUST); ?></span>
+				<span class="value"><?= $enc->html($oem->getValue()); ?></span>
+			</p>
+        <?php endif ?>
+
+
+		<div class="offer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+			<div class="stock-list">
+				<div class="articleitem stock-actual"
+					 data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
+					 data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
+				</div>
+                <?php foreach( $productItem->getRefItems( 'product', null, 'default' ) as $articleId => $articleItem ) : ?>
+					<div class="articleitem"
+						 data-prodid="<?= $enc->attr( $articleId ); ?>"
+						 data-prodcode="<?= $enc->attr( $articleItem->getCode() ); ?>">
+					</div>
+                <?php endforeach; ?>
+			</div>
+
+			<div class="price-list">
+				<div class="articleitem price price-actual"
+					 data-prodid="<?= $enc->attr( $productItem->getId() ); ?>"
+					 data-prodcode="<?= $enc->attr( $productItem->getCode() ); ?>">
+                    <?php $priceItems = $productItem->getRefItems( 'price', null, 'default' ); ?>
+                    <?= $this->partial(
+                    /** client/html/common/partials/price
+                     * Relative path to the price partial template file
+                     *
+                     * Partials are templates which are reused in other templates and generate
+                     * reoccuring blocks filled with data from the assigned values. The price
+                     * partial creates an HTML block for a list of price items.
+                     *
+                     * The partial template files are usually stored in the templates/partials/ folder
+                     * of the core or the extensions. The configured path to the partial file must
+                     * be relative to the templates/ folder, e.g. "partials/price-standard.php".
+                     *
+                     * @param string Relative path to the template file
+                     * @since 2015.04
+                     * @category Developer
+                     */
+                        $this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+                        array( 'prices' => $priceItems )
+                    ); ?>
+				</div>
+
+                <?php if( $productItem->getType() === 'select' ) : ?>
+                    <?php foreach( $productItem->getRefItems( 'product', 'default', 'default' ) as $prodid => $product ) : ?>
+                        <?php if( isset( $productItems[$prodid] ) ) { $product = $productItems[$prodid]; } ?>
+
+                        <?php if( ( $prices = $product->getRefItems( 'price', null, 'default' ) ) !== [] ) : ?>
+							<div class="articleitem price"
+								 data-prodid="<?= $enc->attr( $prodid ); ?>"
+								 data-prodcode="<?= $enc->attr( $product->getCode() ); ?>">
+                                <?= $this->partial(
+                                    $this->config( 'client/html/common/partials/price', 'common/partials/price-standard' ),
+                                    array( 'prices' => $prices )
+                                ); ?>
+							</div>
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+                <?php endif; ?>
+			</div>
+
+		</div>
+
+
+        <?php if( $this->get( 'basket-add', false ) ) : ?>
+			<form method="POST" action="<?= $enc->attr( $this->url( $basketTarget, $basketController, $basketAction, $basketParams, [], $basketConfig ) ); ?>">
+				<!-- catalog.lists.items.csrf -->
+                <?= $this->csrf()->formfield(); ?>
+				<!-- catalog.lists.items.csrf -->
+
+                <?php if( $basketSite ) : ?>
+					<input type="hidden" name="<?= $this->formparam( 'site' ) ?>" value="<?= $enc->attr( $basketSite ) ?>" />
+                <?php endif ?>
+
+                <?php if( $productItem->getType() === 'select' ) : ?>
+					<div class="items-selection">
+                        <?= $this->partial(
+                            $this->config( 'client/html/common/partials/selection', 'common/partials/selection-standard' ),
+                            array(
+                                'products' => $productItem->getRefItems( 'product', 'default', 'default' ),
+                                'productItems' => $this->get( 'productItems', [] ),
+                                'productItem' => $productItem,
+                            )
+                        ); ?>
+					</div>
+                <?php endif; ?>
+
+				<div class="items-attribute">
+                    <?= $this->partial(
+                        $this->config( 'client/html/common/partials/attribute', 'common/partials/attribute-standard' ),
+                        array(
+                            'productItem' => $productItem,
+                            'attributeConfigItems' => $productItem->getRefItems( 'attribute', null, 'config' ),
+                            'attributeCustomItems' => $productItem->getRefItems( 'attribute', null, 'custom' ),
+                            'attributeHiddenItems' => $productItem->getRefItems( 'attribute', null, 'hidden' ),
+                        )
+                    ); ?>
+				</div>
+
+				<div class="addbasket">
+					<div class="input-group">
+						<input type="hidden" value="add"
+							   name="<?= $enc->attr( $this->formparam( 'b_action' ) ); ?>"
+						/>
+						<input type="hidden" value="<?= $id; ?>"
+							   name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'prodid' ) ) ); ?>"
+						/>
+						<input type="number" class="form-control" value="1"
+							   min="1" max="2147483647" maxlength="10" step="1" required="required" <?= $disabled ?>
+							   name="<?= $enc->attr( $this->formparam( array( 'b_prod', 0, 'quantity' ) ) ); ?>"
+						/><!--
 							--><button class="btn btn-primary" type="submit" value="" <?= $disabled ?> >
-								<?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
-							</button>
-						</div>
+                            <?= $enc->html( $this->translate( 'client', 'Add to basket' ), $enc::TRUST ); ?>
+						</button>
 					</div>
+				</div>
 
-				</form>
-			<?php endif; ?>
+			</form>
+        <?php endif; ?>
 
 
-		</li><!--
+	</li><!--
 
 	<?php endforeach; ?>
 
