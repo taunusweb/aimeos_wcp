@@ -67,7 +67,7 @@ $count = 0;
 		<meta itemprop="priceCurrency" content="<?= $priceItem->getCurrencyId(); ?>" />
 		<meta itemprop="price" content="<?= $priceItem->getValue(); ?>" />
 
-		<span class="quantity<?= ($page == 'detail' ? ' col-4' : ''); ?>" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>  itemscope="" itemtype="http://schema.org/QuantitativeValue">
+		<span class="quantity<?= ($page == 'detail' ? ' col-5' : ''); ?>" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>  itemscope="" itemtype="http://schema.org/QuantitativeValue">
 		<?php if( $count > 1 ) : ?>
 			<meta itemprop="minValue" content="<?= $priceItem->getQuantity(); ?>" />
             <?= $enc->html( sprintf( $format['quantity'], $priceItem->getQuantity() ), $enc::TRUST ); ?>
