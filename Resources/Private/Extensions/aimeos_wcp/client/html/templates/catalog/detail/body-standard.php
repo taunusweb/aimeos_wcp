@@ -314,10 +314,13 @@ if (isset($this->detailProductItem)) {
 									   name="<?= $enc->attr($this->formparam(array('b_prod', 0, 'prodid'))); ?>"
 									   value="<?= $enc->attr($this->detailProductItem->getId()); ?>"
 								/>
-								<input type="number" class="form-control input-lg" <?= $disabled ?>
-									   name="<?= $enc->attr($this->formparam(array('b_prod', 0, 'quantity'))); ?>"
-									   min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
-								/>
+								<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
+									   name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ) ?>"
+									   step="<?= $this->detailProductItem->getScale() ?>"
+									   min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
+									   value="<?= $this->detailProductItem->getScale() ?>" required="required"
+									   title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
+								>
 								<button class="btn btn-primary btn-lg" type="submit" value="" <?= $disabled ?> >
                                     <?= $enc->html($this->translate('client', 'Add to basket'), $enc::TRUST); ?>
 								</button>
