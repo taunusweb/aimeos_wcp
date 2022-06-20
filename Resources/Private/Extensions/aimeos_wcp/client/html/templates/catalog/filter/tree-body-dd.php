@@ -21,19 +21,19 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 <section>
 
   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller" data-bs-toggle="dropdown" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller" data-toggle="dropdown" aria-expanded="false">
     <span class="hersteller-name">Hersteller</span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dd-hersteller">
       <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
-        <li><span class="dropdown-item <?= $enc->attr( $hersteller->getCode() ) ?>" data-id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>"><?= $enc->html( $child->getName() ) ?></span></li>
+        <li><span class="dropdown-item <?= $enc->attr( $hersteller->getCode() ) ?>" data-id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>"><?= $enc->html( $hersteller->getName() ) ?></span></li>
       <?php endforeach; ?>
     </ul>
   </div>
 
   <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
-    <div class="dropdown dd-gruppe" id="gruppe-<?= $enc->attr( $child->getId() ) ?>">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="dropdown dd-gruppe" id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>" data-toggle="dropdown" aria-expanded="false">
         <span class="gruppe-name"><?= $enc->html( $hersteller->getName() ) ?></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>">
