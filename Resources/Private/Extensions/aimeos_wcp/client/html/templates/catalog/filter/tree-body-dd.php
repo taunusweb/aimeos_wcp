@@ -26,7 +26,11 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
     </button>
     <ul class="dropdown-menu" aria-labelledby="dd-hersteller">
       <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
-        <li><span class="dropdown-item <?= $enc->attr( $hersteller->getCode() ) ?>" data-id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>"><?= $enc->html( $hersteller->getName() ) ?></span></li>
+        <li>
+          <a class="dropdown-item" data-id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>" href="#">
+            <?= $enc->html( $hersteller->getName() ) ?>
+          </a>
+        </li>
       <?php endforeach; ?>
     </ul>
   </div>
