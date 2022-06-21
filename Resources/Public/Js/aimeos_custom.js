@@ -12,3 +12,13 @@ AimeosCheckoutStandard.setupAddressForms = function() {
 
 
 AimeosCheckoutStandard.setupSalutationCompany = function() {}
+
+
+$(document).on('ready', function() {
+
+	$('.catalog-filter-wcp .dropdown.hersteller').on('click', '.dropdown-item a', function(ev) {
+		$('.catalog-filter-wcp .dropdown.dd-gruppe').addClass('hidden');
+		$('#' + ev.target.data('id')).removeClass('hidden');
+		$('.hersteller-name', ev.delegateTarget).text(ev.target.text());
+	});
+});

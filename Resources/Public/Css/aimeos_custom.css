@@ -1,3 +1,6 @@
+.hidden {
+    display: none;
+}
 
 .aimeos .btn-primary,
 .aimeos .btn-primary:active {

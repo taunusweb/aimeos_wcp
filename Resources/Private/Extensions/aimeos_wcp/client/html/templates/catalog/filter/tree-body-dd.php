@@ -20,7 +20,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
 <section>
 
-  <div class="dropdown">
+  <div class="dropdown hersteller">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller" data-toggle="dropdown" aria-expanded="false">
     <span class="hersteller-name">Hersteller</span>
     </button>
