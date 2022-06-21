@@ -22,7 +22,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
 
   <div class="dropdown hersteller">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller" data-toggle="dropdown" aria-expanded="false">
-    <span class="hersteller-name">Hersteller</span>
+      <span class="hersteller-name"><?= $enc->html( $this->get( 'treeCatalogPath', map() )->slice( 1 )->getName()->first() ?: $this->translate( 'client', 'Hersteller' ) ) ?>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dd-hersteller">
       <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
@@ -38,7 +38,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
   <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
     <div class="dropdown dd-gruppe hidden" id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>" data-toggle="dropdown" aria-expanded="false">
-        <span class="gruppe-name"><?= $enc->html( $this->translate( 'client', 'Bitte wählen' ) ) ?></span>
+        <span class="gruppe-name"><?= $enc->html( $this->get( 'treeCatalogPath', map() )->slice( 2 )->getName()->first() ?: $this->translate( 'client', 'Bitte wählen' ) ) ?></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>">
         <?php foreach( $hersteller->getChildren() as $gruppe ) : ?>

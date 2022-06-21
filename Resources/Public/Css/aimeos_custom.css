@@ -514,3 +514,10 @@ ul.level-2 a.cat-item {
 .catalog-filter-search {
     border-bottom: 0;
 }
+
+.catalog-filter-wcp .dropdown.hersteller,
+.catalog-filter-wcp .dropdown.dd-gruppe {
+    width: auto;
+    min-width: 20rem;
+    margin: 1rem 0;
+}

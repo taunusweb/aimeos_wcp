@@ -8,4 +8,10 @@ $(document).ready(function() {
 
 		ev.preventDefault();
 	});
+
+
+	$('.catalog-filter-wcp .dropdown.dd-gruppe').on('click', 'a.dropdown-item', function(ev) {
+		$('.gruppe-name', ev.delegateTarget).text($(ev.target).text());
+	});
+
 });
