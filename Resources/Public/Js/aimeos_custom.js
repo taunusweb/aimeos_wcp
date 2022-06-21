@@ -4,7 +4,9 @@ $(document).ready(function() {
 
 		$('.hersteller-name', ev.delegateTarget).text($(ev.target).text());
 		$('.catalog-filter-wcp .dropdown.dd-gruppe').addClass('hidden');
+
 		$('#' + $(ev.target).data('id')).removeClass('hidden');
+		$('#' + $(ev.target).data('id') + ' button').text('Bitte wählen');
 
 		ev.preventDefault();
 	});

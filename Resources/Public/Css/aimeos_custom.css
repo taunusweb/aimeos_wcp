@@ -522,6 +522,7 @@ ul.level-2 a.cat-item {
     margin: 1rem 0;
 }
 
-.catalog-filter-wcp .dropdown button {
-    width: 100%;
+.catalog-filter-wcp .dropdown button,
+.catalog-filter-wcp .dropdown-menu.show {
+        width: 100%;
 }
