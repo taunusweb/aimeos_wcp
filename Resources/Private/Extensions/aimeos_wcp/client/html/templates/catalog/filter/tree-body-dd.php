@@ -10,19 +10,20 @@
 $enc = $this->encoder();
 $params = $this->param();
 
-$listTarget = $this->config( 'client/html/catalog/lists/url/target' );
-$listController = $this->config( 'client/html/catalog/lists/url/controller', 'catalog' );
-$listAction = $this->config( 'client/html/catalog/lists/url/action', 'list' );
-$listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
+$manufacturer = $this->get( 'treeCatalogPath', map() )->slice( 1, 1 )->first();
+$group = $this->get( 'treeCatalogPath', map() )->slice( 2, 1 )->first();
 
 
 ?>
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
 <section>
 
-  <div class="dropdown hersteller">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller" data-toggle="dropdown" aria-expanded="false">
-      <span class="hersteller-name"><?= $enc->html( $this->get( 'treeCatalogPath', map() )->slice( 1 )->getName()->first() ?: $this->translate( 'client', 'Hersteller' ) ) ?>
+<div class="dropdown hersteller">
+    <button class="btn btn-secondary dropdown-toggle" type="button"
+      id="dd-hersteller" data-toggle="dropdown" aria-expanded="false">
+      <span class="hersteller-name">
+        <?= $enc->html( $manufacturer ? $manufacturer->getName() : $this->translate( 'client', 'Hersteller' ) ) ?>
+      </span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dd-hersteller">
       <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
@@ -36,9 +37,13 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
   </div>
 
   <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
-    <div class="dropdown dd-gruppe hidden" id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>" data-toggle="dropdown" aria-expanded="false">
-        <span class="gruppe-name"><?= $enc->html( $this->get( 'treeCatalogPath', map() )->slice( 2 )->getName()->first() ?: $this->translate( 'client', 'Bitte wählen' ) ) ?></span>
+    <div class="dropdown dd-gruppe <?= $manufacturer && $manufacturer->getId() == $hersteller->getId() ? '' : 'hidden' ?>"
+      id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>"
+        data-toggle="dropdown" aria-expanded="false">
+        <span class="gruppe-name">
+          <?= $enc->html( $group ? $group->getName() : $this->translate( 'client', 'Bitte wählen' ) ) ?>
+        </span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>">
         <?php foreach( $hersteller->getChildren() as $gruppe ) : ?>
