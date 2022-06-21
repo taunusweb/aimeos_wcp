@@ -6,7 +6,7 @@ $(document).ready(function() {
 		$('.catalog-filter-wcp .dropdown.dd-gruppe').addClass('hidden');
 
 		$('#' + $(ev.target).data('id')).removeClass('hidden');
-		$('#' + $(ev.target).data('id') + ' button').text('Bitte wählen');
+		$('#' + $(ev.target).data('id') + ' .gruppe-name').text('Bitte wählen');
 
 		ev.preventDefault();
 	});
