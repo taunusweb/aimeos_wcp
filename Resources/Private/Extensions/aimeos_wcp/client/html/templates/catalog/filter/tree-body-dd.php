@@ -36,7 +36,7 @@ $listConfig = $this->config( 'client/html/catalog/lists/url/config', [] );
   </div>
 
   <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
-    <div class="dropdown dd-gruppe" id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>">
+    <div class="dropdown dd-gruppe hidden" id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>" data-toggle="dropdown" aria-expanded="false">
         <span class="gruppe-name"><?= $enc->html( $hersteller->getName() ) ?></span>
       </button>
