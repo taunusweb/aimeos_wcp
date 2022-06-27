@@ -49,7 +49,7 @@ $group = $this->get( 'treeCatalogPath', map() )->slice( 2, 1 )->first();
         <?php foreach( $hersteller->getChildren() as $gruppe ) : ?>
           <li>
             <a class="dropdown-item <?= $enc->attr( $gruppe->getCode() ) ?>"
-              href="<?= $enc->attr( $this->link( 'client/html/catalog/lists', ['f_catid' => $gruppe->getId()] + $this->get( 'treeFilterParams', [] ) ) ) ?>">
+              href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['f_catid' => $gruppe->getId()] + $this->get( 'treeFilterParams', [] ) ) ) ?>">
               <?= $enc->html( $gruppe->getName() ) ?>
             </a>
           </li>
