@@ -49,6 +49,8 @@ $count = 0;
 
     if( $priceItem->getValue() > $price ) {
         continue; // Staffelpreise nur wenn sie kleiner sind
+    } else {
+        $price = $priceItem->getValue();
     }
     $count++;
     $costs = $priceItem->getCosts();
