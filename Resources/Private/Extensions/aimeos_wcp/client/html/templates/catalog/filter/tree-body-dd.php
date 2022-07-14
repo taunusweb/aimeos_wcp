@@ -42,7 +42,7 @@ $group = $this->get( 'treeCatalogPath', map() )->slice( 2, 1 )->first();
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>"
         data-toggle="dropdown" aria-expanded="false">
         <span class="gruppe-name">
-          <?= $enc->html( $group ? $group->getName() : $this->translate( 'client', 'Bitte wählen' ) ) ?>
+          <?= $enc->html( $group ? $group->getName() : $this->translate( 'client', 'Modell' ) ) ?>
         </span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>">
