@@ -507,8 +507,8 @@ ul.level-2 a.cat-item {
 }
 
 .catalog-filter {
-    margin-bottom: 0.75rem;
-    margin-top: 0.75rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .catalog-filter-search {
@@ -518,11 +518,11 @@ ul.level-2 a.cat-item {
 .catalog-filter-wcp .dropdown.hersteller,
 .catalog-filter-wcp .dropdown.dd-gruppe {
     width: auto;
-    min-width: 20rem;
+    min-width: 30rem;
     margin: 1rem 0;
 }
 
 .catalog-filter-wcp .dropdown button,
 .catalog-filter-wcp .dropdown-menu.show {
-        width: 100%;
+    width: 100%;
 }
