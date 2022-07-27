@@ -107,7 +107,7 @@ $suggestUrl = $enc->attr( $this->url( $suggestTarget, $suggestController, $sugge
 
 	<h2><?= $enc->html( $this->translate( 'client', 'Search' ), $enc::TRUST ); ?></h2>
 	<div class="input-group">
-		<input class="form-control value" type="text" placeholder="Suchbegriff, Artikelnummer, OEM, etc."
+		<input class="form-control value" type="text" placeholder="Suche nach Weber-Artikelnummer, OEM-Nummer, etc."
 			name="<?= $name; ?>" value="<?= $phrase; ?>"
 			data-url="<?= $suggestUrl; ?>" data-hint="<?= $hint; ?>"
 		/><!--
