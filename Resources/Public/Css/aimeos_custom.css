@@ -507,8 +507,8 @@ ul.level-2 a.cat-item {
 }
 
 .catalog-filter {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .catalog-filter-search {
