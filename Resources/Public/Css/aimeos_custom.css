@@ -199,12 +199,26 @@ ul.level-2 a.cat-item {
     max-width: 15em;
 }
 
+/* price list */
 .catalog-list .price-list .price-item {
     display: none;
 }
 
-.catalog-list .price-list .price-item:first-of-type {
+.catalog-list .price-list .price-item:last-of-type {
     display: block;
+}
+
+.catalog-list .price-item:not(:last-of-type) {
+    display: none;
+}
+
+.catalog-detail .ab-list {
+    display: none;
+}
+
+
+.catalog-list .quantity {
+    display: none!important;
 }
 
 .catalog-list .product .offer {
@@ -478,6 +492,8 @@ ul.level-2 a.cat-item {
     border-radius: 6px;
     padding: 10px;
     position: absolute;
+    min-height: 155px;
+    bottom: 0;
     z-index: 1;
 }
 
@@ -518,6 +534,7 @@ ul.level-2 a.cat-item {
 .catalog-filter-wcp .dropdown.hersteller,
 .catalog-filter-wcp .dropdown.dd-gruppe {
     width: auto;
+    min-width: 30rem;
     margin: 1rem 0;
 }
 
@@ -525,3 +542,5 @@ ul.level-2 a.cat-item {
 .catalog-filter-wcp .dropdown-menu.show {
     width: 100%;
 }
+
+

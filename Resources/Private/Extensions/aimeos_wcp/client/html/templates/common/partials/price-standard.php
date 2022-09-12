@@ -68,7 +68,11 @@ $count = 0;
 		<meta itemprop="valueAddedTaxIncluded" content="<?= ( $priceItem->getTaxFlag() ? 'true' : 'false' ); ?>" />
 		<meta itemprop="priceCurrency" content="<?= $priceItem->getCurrencyId(); ?>" />
 		<meta itemprop="price" content="<?= $priceItem->getValue(); ?>" />
-
+        <?php if( $count > 1 ) : ?>
+			<span class="ab-list">
+		<?= $enc->html( $this->translate('client', 'ab' ) ) ?>
+		</span>
+        <?php endif; ?>
 		<span class="quantity<?= ($page == 'detail' ? ' col-5' : ''); ?>" <?= (count($prices) > 1 ? 'style="display:inline-block"' : ''); ?>  itemscope="" itemtype="http://schema.org/QuantitativeValue">
 		<?php if( $count > 1 ) : ?>
 			<meta itemprop="minValue" content="<?= $priceItem->getQuantity(); ?>" />
