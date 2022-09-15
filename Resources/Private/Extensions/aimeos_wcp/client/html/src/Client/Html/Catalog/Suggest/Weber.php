@@ -18,9 +18,9 @@ class Weber extends Standard
 		$size = $config->get( 'client/html/catalog/suggest/size', 24 );
 
 		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
-			->compare( '>', 'catalog:relevance("' . str_replace( '"', ' ', $text ) . '")', 0 )
+			->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
 			->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )->sort( 'catalog.label' )
-			->slice( 0, 4 )->search();
+			->slice( 0, 5 )->search();
 
 		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )
 		{

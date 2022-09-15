@@ -13,7 +13,7 @@ class ListCategories
 		if( $text = $view->param( 'f_search' ) )
 		{
 			$view->listNodes = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' )->uses( ['media'] )
-				->compare( '>', 'catalog:relevance("' . str_replace( '"', ' ', $text ) . '")', 0 )
+				->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
 				->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )->sort( 'catalog.label' )
 				->slice( 0, 8 )->search();
 		}
