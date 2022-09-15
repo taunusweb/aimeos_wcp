@@ -28,7 +28,8 @@ $group = $this->get( 'treeCatalogPath', map() )->slice( 2, 1 )->first();
     <ul class="dropdown-menu" aria-labelledby="dd-hersteller">
       <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
         <li>
-          <a class="dropdown-item" data-id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>" href="#">
+        <a class="dropdown-item" data-id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid'
+ => $hersteller->getId()] ) ) ?>">
             <?= $enc->html( $hersteller->getName() ) ?>
           </a>
         </li>
