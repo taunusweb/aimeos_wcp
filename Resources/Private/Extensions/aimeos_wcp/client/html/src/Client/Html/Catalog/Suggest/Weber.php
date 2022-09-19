@@ -15,12 +15,12 @@ class Weber extends Standard
 			->text( $text ); // sort by relevance first
 
 		$domains = $config->get( 'client/html/catalog/suggest/domains', ['text', 'media'] );
-		$size = $config->get( 'client/html/catalog/suggest/size', 24 );
+		$size = $config->get( 'client/html/catalog/suggest/size', 30 );
 
 		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
 			->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
 			->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )->sort( 'catalog.label' )
-			->slice( 0, 5 )->search();
+			->slice( 0, 20 )->search();
 
 		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )
 		{
