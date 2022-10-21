@@ -9,18 +9,18 @@ class Weber extends Standard
 	{
 		$context = $this->getContext();
 		$config = $context->getConfig();
-		$text = $view->param( 'f_search' );
+		$text = $view->param( 'f_search', '' );
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
 			->text( $text ); // sort by relevance first
 
 		$domains = $config->get( 'client/html/catalog/suggest/domains', ['text', 'media'] );
-		$size = $config->get( 'client/html/catalog/suggest/size', 30 );
+		$size = $config->get( 'client/html/catalog/suggest/size', 50 );
 
 		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
 			->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
 			->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )->sort( 'catalog.label' )
-			->slice( 0, 20 )->search();
+			->slice( 0, $size )->search();
 
 		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )
 		{
@@ -33,9 +33,25 @@ class Weber extends Standard
 				->oneOf( $view->param( 'f_oneid', [] ) );
 		}
 
-		$view->suggestCatalogItems = $catItems;
-		$view->suggestItems = $cntl->uses( $domains )->slice( 0, $size - count( $catItems ) )->search();
+		$view->suggestCatalogItems = $this->filter( $catItems, $text );
+		$view->suggestItems = $this->filter( $cntl->uses( $domains )->slice( 0, $size )->search(), $text );
 
 		return $view;
+	}
+
+
+	protected function filter( \Aimeos\Map $items, string $text ) : \Aimeos\Map
+	{
+		foreach( explode( ' ', $text ) as $str )
+		{
+			foreach( $items as $key => $item )
+			{
+				if( stripos( $item->getName(), $str ) === false ) {
+					$items->remove( $key );
+				}
+			}
+		}
+
+		return $items;
 	}
 }
