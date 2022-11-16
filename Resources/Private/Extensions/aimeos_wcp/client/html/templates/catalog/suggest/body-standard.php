@@ -15,12 +15,12 @@ foreach( $this->get( 'suggestCatalogItems', [] ) as $id => $catItem )
 	$items[] = array(
 		'label' => $name,
 		'html' => '
-			<li class="aimeos catalog-suggest">
+			<div class="aimeos catalog-suggest suggest-catalog">
 				<a class="suggest-item" href="' . $enc->attr( $this->link( 'client/html/catalog/lists/url', ['f_name' => $catItem->getName( 'url' ), 'f_catid' => $catItem->getId()] ) ) . '">
 					<div class="item-image" style="background-image: url(' . $enc->attr( $this->content( $media ) ) . ')"></div>
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 				</a>
-			</li>
+			</div>
 		'
 	);
 }
@@ -38,12 +38,12 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	$items[] = array(
 		'label' => $name,
 		'html' => '
-			<li class="aimeos catalog-suggest">
+			<div class="aimeos catalog-suggest suggest-product">
 				<a class="suggest-item" href="' . $enc->attr( $this->link( 'client/html/catalog/detail/url', ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ) ) . '">
 					<div class="item-image" style="background-image: url(' . $enc->attr( $this->content( $media ) ) . ')"></div>
 					<div class="item-name">' . $enc->html( $name ) . '</div>
 				</a>
-			</li>
+			</div>
 		'
 	);
 }
