@@ -15,7 +15,7 @@ class Weber extends Standard
 			->text( $text ); // sort by relevance first
 
 		$domains = $config->get( 'client/html/catalog/suggest/domains', ['text', 'media'] );
-		$size = $config->get( 'client/html/catalog/suggest/size', 50 );
+		$size = $config->get( 'client/html/catalog/suggest/size', 25 );
 
 		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
 			->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
