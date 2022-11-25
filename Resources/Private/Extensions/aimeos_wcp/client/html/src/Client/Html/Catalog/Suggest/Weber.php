@@ -33,25 +33,9 @@ class Weber extends Standard
 				->oneOf( $view->param( 'f_oneid', [] ) );
 		}
 
-		$view->suggestCatalogItems = $this->filter( $catItems, $text );
-		$view->suggestItems = $this->filter( $cntl->uses( $domains )->slice( 0, $size )->search(), $text );
+		$view->suggestCatalogItems = $catItems;
+		$view->suggestItems = $cntl->uses( $domains )->slice( 0, $size )->search();
 
 		return $view;
-	}
-
-
-	protected function filter( \Aimeos\Map $items, string $text ) : \Aimeos\Map
-	{
-		foreach( explode( ' ', $text ) as $str )
-		{
-			foreach( $items as $key => $item )
-			{
-				if( stripos( $item->getName(), $str ) === false ) {
-					$items->remove( $key );
-				}
-			}
-		}
-
-		return $items;
 	}
 }
