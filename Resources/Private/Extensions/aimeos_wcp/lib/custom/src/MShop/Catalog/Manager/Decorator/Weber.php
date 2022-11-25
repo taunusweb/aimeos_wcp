@@ -43,7 +43,7 @@ class Weber extends Base
 				foreach( explode( ' ', $search ) as $part )
 				{
 					if( strlen( $part ) > 2 ) {
-						$str .= $part . '* ';
+						$str .= '+' . $part . '* ';
 					}
 				}
 
