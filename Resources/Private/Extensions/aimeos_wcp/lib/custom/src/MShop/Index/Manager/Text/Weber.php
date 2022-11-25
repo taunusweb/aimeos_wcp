@@ -80,6 +80,7 @@ class Weber extends \Aimeos\MShop\Index\Manager\Text\Solr
 			$source['bool']['should'][] = 'product.code:(' . $text . '*)^750';
 
 			$text = str_replace( ['.', '-', ',', '"', '\\'], '', $text );
+			$text = \Aimeos\Map::explode( ' ', $text )->prefix( '+' )->join( ' ' );
 
 			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $text . ')^450';
 			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $text . '*)^300';
