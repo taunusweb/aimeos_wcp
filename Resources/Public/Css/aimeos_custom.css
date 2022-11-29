@@ -543,4 +543,8 @@ ul.level-2 a.cat-item {
     width: 100%;
 }
 
-
+.autocomplete {
+    background-color: #FFF;
+    display: flex;
+    z-index: 1000;
+}
