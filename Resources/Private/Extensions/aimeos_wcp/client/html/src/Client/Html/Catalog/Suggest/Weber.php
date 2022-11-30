@@ -11,16 +11,19 @@ class Weber extends Standard
 		$config = $context->getConfig();
 		$text = $view->param( 'f_search', '' );
 
-		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
-			->text( $text ); // sort by relevance first
-
 		$domains = $config->get( 'client/html/catalog/suggest/domains', ['text', 'media'] );
 		$size = $config->get( 'client/html/catalog/suggest/size', 25 );
 
 		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
 			->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
-			->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )->sort( 'catalog.label' )
-			->slice( 0, $size )->search();
+			->compare( '=~', 'catalog.label', explode( ' ', $text ) )
+			->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )
+			->slice( 0, $size )
+			->search();
+
+
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
+			->uses( $domains )->text( $text )->slice( 0, $size ); // sort by relevance first
 
 		if( $config->get( 'client/html/catalog/suggest/restrict', true ) == true )
 		{
@@ -34,7 +37,7 @@ class Weber extends Standard
 		}
 
 		$view->suggestCatalogItems = $catItems;
-		$view->suggestItems = $cntl->uses( $domains )->slice( 0, $size )->search();
+		$view->suggestItems = $cntl->search();
 
 		return $view;
 	}
