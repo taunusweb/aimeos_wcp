@@ -14,13 +14,20 @@ class Weber extends Standard
 		$domains = $config->get( 'client/html/catalog/suggest/domains', ['text', 'media'] );
 		$size = $config->get( 'client/html/catalog/suggest/size', 25 );
 
-		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
+		$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
+
+		foreach( explode( ' ', $text ) as $str )
+		{
+			if( strlen( $str = preg_filter( '/[^A-Za-z0-9]/', '', $str ) ) < 3 ) {
+				$cntl->compare( '~=', 'catalog.label', $str );
+			}
+		}
+
+		$catItems = $cntl->uses( $domains )
 			->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
-			->compare( '~=', 'catalog.label', explode( ' ', $text ) )
 			->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )
 			->slice( 0, $size )
 			->search();
-
 
 		$cntl = \Aimeos\Controller\Frontend::create( $context, 'product' )
 			->uses( $domains )->text( $text )->slice( 0, $size ); // sort by relevance first
