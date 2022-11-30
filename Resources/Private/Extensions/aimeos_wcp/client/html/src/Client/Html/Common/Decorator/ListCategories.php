@@ -12,7 +12,7 @@ class ListCategories
 
 		if( $text = $view->param( 'f_search' ) )
 		{
-			$cntl = \Aimeos\Controller\Frontend::create( $context, 'catalog' );
+			$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' );
 
 			foreach( explode( ' ', $text ) as $str )
 			{
