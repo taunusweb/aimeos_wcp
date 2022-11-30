@@ -18,7 +18,10 @@ class Weber extends Standard
 
 		foreach( explode( ' ', $text ) as $str )
 		{
-			if( strlen( $str = preg_filter( '/[^A-Za-z0-9]/', '', $str ) ) < 3 ) {
+			$len = strlen( $str );
+			$str = preg_filter( '/[^A-Za-z0-9]/', '', $str );
+
+			if( strlen( $str ) > 0 && $len < 4 ) {
 				$cntl->compare( '~=', 'catalog.label', $str );
 			}
 		}
