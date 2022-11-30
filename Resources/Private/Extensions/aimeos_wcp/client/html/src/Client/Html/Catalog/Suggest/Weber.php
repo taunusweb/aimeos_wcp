@@ -16,7 +16,7 @@ class Weber extends Standard
 
 		$catItems = \Aimeos\Controller\Frontend::create( $context, 'catalog' )->uses( $domains )
 			->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
-			->compare( '=~', 'catalog.label', explode( ' ', $text ) )
+			->compare( '~=', 'catalog.label', explode( ' ', $text ) )
 			->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )
 			->slice( 0, $size )
 			->search();
