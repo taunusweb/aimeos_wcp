@@ -22,7 +22,7 @@ class Weber extends Standard
 			$str = preg_filter( '/[A-Za-z0-9]/', '$0', $str );
 
 			if( strlen( $str ) > 0 && $len < 4 ) {
-				$cntl->compare( '~=', 'catalog.label', $str );
+				$cntl->compare( '~=', 'catalog.label', ' ' . $str );
 			}
 		}
 
