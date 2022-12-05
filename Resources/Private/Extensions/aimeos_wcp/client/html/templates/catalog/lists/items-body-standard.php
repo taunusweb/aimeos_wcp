@@ -73,6 +73,8 @@ foreach( $this->get( 'listProductItems', [] ) as $id => $product )
         )
     ); ?>
 
+    <hr>
+
     <?php if( !empty( $similar ) ) : ?>
 
         <?= $this->partial(

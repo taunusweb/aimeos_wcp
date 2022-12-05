@@ -77,17 +77,17 @@ class Weber extends \Aimeos\MShop\Index\Manager\Text\Solr
 			$text = addcslashes( $params[1], '+-&|!(){}[]^"~*?:/' );
 
 			$source['bool']['should'][] = 'product.code:(' . $text . ')^1000';
-			$source['bool']['should'][] = 'product.code:(' . $text . '*)^750';
+			$source['bool']['should'][] = 'product.code:(' . $text . '*)^250';
 
 			$text = str_replace( ['.', '-', ',', '"', '\\'], '', $text );
-			$text = \Aimeos\Map::explode( ' ', $text )->prefix( '+' )->join( ' ' );
+			$text = \Aimeos\Map::explode( ' ', $text )->filter()->prefix( '+' )->join( ' ' );
 
 			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $text . ')^450';
-			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $text . '*)^300';
+			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $text . '*)^100';
 			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':(' . $text . ')^150';
-			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':(' . $text . '*)^50';
+			$source['bool']['should'][] = 'index.text.content_' . $params[0] . ':(' . $text . '*)^15';
 			$source['bool']['should'][] = 'index.text.content_:(' . $text . ')^800';
-			$source['bool']['should'][] = 'index.text.content_:(' . $text . '*)^600';
+			$source['bool']['should'][] = 'index.text.content_:(' . $text . '*)^200';
 
 			return $params;
 		};
