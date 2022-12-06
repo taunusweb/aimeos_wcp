@@ -74,13 +74,12 @@ class Weber extends \Aimeos\MShop\Index\Manager\Text\Solr
 
 		$this->searchConfig['index.text:relevance']['function'] = function( &$source, array $params ) {
 
-			$text = addcslashes( $params[1], '+-&|!(){}[]^"~*?:/' );
+			$text = addcslashes( $params[1], '+&|!(){}[]^~*?:/' );
+			$text = str_replace( ['.', '-', ',', '"', '\\'], '', $text );
+			$text = \Aimeos\Map::explode( ' ', $text )->filter()->prefix( '+' )->join( ' ' );
 
 			$source['bool']['should'][] = 'product.code:(' . $text . ')^1000';
 			$source['bool']['should'][] = 'product.code:(' . $text . '*)^250';
-
-			$text = str_replace( ['.', '-', ',', '"', '\\'], '', $text );
-			$text = \Aimeos\Map::explode( ' ', $text )->filter()->prefix( '+' )->join( ' ' );
 
 			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $text . ')^450';
 			$source['bool']['should'][] = 'index.text.name_' . $params[0] . ':(' . $text . '*)^100';
