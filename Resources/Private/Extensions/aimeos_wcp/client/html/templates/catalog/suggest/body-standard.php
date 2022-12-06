@@ -27,6 +27,10 @@ foreach( $this->get( 'suggestCatalogItems', [] ) as $id => $catItem )
 
 foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 {
+	if( $productItem->score < 260 ) {
+		continue;
+	}
+
 	$price = '';
 	$name = strip_tags( $productItem->getName() );
 	$media = $productItem->getRefItems( 'media', 'default', 'default' )->getPreview()->first() ?: '../../typo3conf/ext/aimeos_wcp/Resources/Public/wasserzeichen.png';
@@ -38,7 +42,7 @@ foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 	$items[] = array(
 		'label' => $name,
 		'html' => '
-			<div class="aimeos catalog-suggest suggest-product">
+			<div class="aimeos catalog-suggest suggest-product ' . $enc->attr( $productItem->score >= 500 ? 'exact' : 'similar' ) . '">
 				<a class="suggest-item" href="' . $enc->attr( $this->link( 'client/html/catalog/detail/url', ['d_name' => $productItem->getName( 'url' ), 'd_prodid' => $productItem->getId(), 'd_pos' => ''] ) ) . '">
 					<div class="item-image" style="background-image: url(' . $enc->attr( $this->content( $media ) ) . ')"></div>
 					<div class="item-name">' . $enc->html( $name ) . '</div>
