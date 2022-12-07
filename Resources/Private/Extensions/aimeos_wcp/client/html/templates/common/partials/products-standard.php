@@ -176,11 +176,12 @@ $detailFilter = array_flip( $this->config( 'client/html/catalog/detail/url/filte
     ?>
 
 		--><li class="product <?= $enc->attr( $productItem->getConfigValue( 'css-class' ) ); ?>"
-			   data-reqstock="<?= (int) $this->get( 'require-stock', true ); ?>"
-			   data-score="<?= $enc->attr( $productItem->score ) ?>"
-			   itemprop="<?= $this->get( 'itemprop' ); ?>"
-			   itemtype="http://schema.org/Product"
-			   itemscope="" >
+			data-reqstock="<?= (int) $this->get( 'require-stock', true ); ?>"
+			data-score="<?= $enc->attr( $productItem->score ) ?>"
+			title="<?= $enc->attr( $productItem->score ) ?>"
+			itemprop="<?= $this->get( 'itemprop' ); ?>"
+			itemtype="http://schema.org/Product"
+			itemscope="" >
 
 
 		<a href="<?= $enc->attr( $this->url( ( $productItem->getTarget() ?: $detailTarget ), $detailController, $detailAction, $params, [], $detailConfig ) ); ?>">
