@@ -313,7 +313,6 @@ ul.level-2 a.cat-item {
 }
 .catalog-filter-attribute fieldset {
     background-color: #f2f2f2;
-    display: inline-block!important;
 }
 
 .catalog-filter-attribute .attribute-lists .attr-item {
