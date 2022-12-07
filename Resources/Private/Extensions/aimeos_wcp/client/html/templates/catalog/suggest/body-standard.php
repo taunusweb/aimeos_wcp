@@ -27,10 +27,6 @@ foreach( $this->get( 'suggestCatalogItems', [] ) as $id => $catItem )
 
 foreach( $this->get( 'suggestItems', [] ) as $id => $productItem )
 {
-	if( $productItem->score < 260 ) {
-		continue;
-	}
-
 	$price = '';
 	$name = strip_tags( $productItem->getName() );
 	$media = $productItem->getRefItems( 'media', 'default', 'default' )->getPreview()->first() ?: '../../typo3conf/ext/aimeos_wcp/Resources/Public/wasserzeichen.png';
