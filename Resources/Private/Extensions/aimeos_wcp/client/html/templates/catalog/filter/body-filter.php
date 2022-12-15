@@ -94,7 +94,7 @@ $params = $this->param();
  *
  * Downside: It will be impossible for customers to deselect the category!
  */
-foreach( ['f_sort'] as $name ) {
+foreach( ['f_sort', 'f_search'] as $name ) {
 	if( isset( $params[$name] ) ) { $listParams[$name] = $params[$name]; }
 }
 
@@ -118,7 +118,6 @@ $enc = $this->encoder();
 	<nav>
 		<form method="GET" action="<?= $enc->attr( $this->url( $listTarget, $listController, $listAction, $listParams, [], $listConfig ) ); ?>">
 
-			<?= $this->block()->get( 'catalog/filter/search' ); ?>
 			<?= $this->block()->get( 'catalog/filter/supplier' ); ?>
 			<?= $this->block()->get( 'catalog/filter/attribute' ); ?>
 
