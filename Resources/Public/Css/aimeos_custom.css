@@ -531,3 +531,9 @@ ul.level-2 a.cat-item {
     display: flex;
     z-index: 1000;
 }
+
+@media (min-width: 992px) {
+    .catalog-filter-tree .category-lists div.level-1 {
+        display: block;
+    }
+}
