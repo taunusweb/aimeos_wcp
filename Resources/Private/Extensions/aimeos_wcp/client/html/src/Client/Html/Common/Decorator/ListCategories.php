@@ -27,7 +27,7 @@ class ListCategories
 			$view->listNodes = $cntl->uses( ['media'] )
 				->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
 				->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )->sort( 'catalog.label' )
-				->slice( 0, 8 )->search();
+				->slice( 0, 100 )->search();
 		}
 
 		return $view;
