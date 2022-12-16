@@ -18,46 +18,46 @@ $group = $this->get( 'treeCatalogPath', map() )->slice( 2, 1 )->first();
 <?php $this->block()->start( 'catalog/filter/tree' ); ?>
 <section>
 
-<div class="dropdown hersteller">
-    <button class="btn btn-secondary dropdown-toggle" type="button"
-      id="dd-hersteller" data-toggle="dropdown" aria-expanded="false">
+	<div class="dropdown hersteller">
+		<button class="btn btn-secondary dropdown-toggle" type="button"
+				id="dd-hersteller" data-toggle="dropdown" aria-expanded="false">
       <span class="hersteller-name">
-        <?= $enc->html( $manufacturer ? $manufacturer->getName() : $this->translate( 'client', 'Suche nach Hersteller' ) ) ?>
+        <?= $enc->html( $manufacturer ? $manufacturer->getName() : $this->translate( 'client', 'Hersteller wählen' ) ) ?>
       </span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dd-hersteller">
-      <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
-        <li>
-        <a class="dropdown-item" data-id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid'
- => $hersteller->getId()] ) ) ?>">
-            <?= $enc->html( $hersteller->getName() ) ?>
-          </a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dd-hersteller">
+            <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
+				<li>
+					<a class="dropdown-item" data-id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>" href="<?= $enc->attr( $this->link( 'client/html/catalog/tree/url', ['f_catid'
+                    => $hersteller->getId()] ) ) ?>">
+                        <?= $enc->html( $hersteller->getName() ) ?>
+					</a>
+				</li>
+            <?php endforeach; ?>
+		</ul>
+	</div>
 
-  <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
-    <div class="dropdown dd-gruppe <?= $manufacturer && $manufacturer->getId() == $hersteller->getId() ? '' : 'hidden' ?>"
-      id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>"
-        data-toggle="dropdown" aria-expanded="false">
+    <?php foreach( $this->treeCatalogTree->getChildren() as $hersteller ) : ?>
+		<div class="dropdown dd-gruppe <?= $manufacturer && $manufacturer->getId() == $hersteller->getId() ? '' : 'hidden' ?>"
+			 id="gruppe-<?= $enc->attr( $hersteller->getId() ) ?>">
+			<button class="btn btn-secondary dropdown-toggle" type="button" id="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>"
+					data-toggle="dropdown" aria-expanded="false">
         <span class="gruppe-name">
-          <?= $enc->html( $group ? $group->getName() : $this->translate( 'client', 'Bitte wählen' ) ) ?>
+          <?= $enc->html( $group ? $group->getName() : $this->translate( 'client', 'Modell wählen' ) ) ?>
         </span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>">
-        <?php foreach( $hersteller->getChildren() as $gruppe ) : ?>
-          <li>
-            <a class="dropdown-item <?= $enc->attr( $gruppe->getCode() ) ?>"
-              href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['f_catid' => $gruppe->getId()] + $this->get( 'treeFilterParams', [] ) ) ) ?>">
-              <?= $enc->html( $gruppe->getName() ) ?>
-            </a>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-  <?php endforeach; ?>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dd-hersteller-<?= $enc->attr( $hersteller->getId() ) ?>">
+                <?php foreach( $hersteller->getChildren() as $gruppe ) : ?>
+					<li>
+						<a class="dropdown-item <?= $enc->attr( $gruppe->getCode() ) ?>"
+						   href="<?= $enc->attr( $this->link( 'client/html/catalog/lists/url', ['f_catid' => $gruppe->getId()] + $this->get( 'treeFilterParams', [] ) ) ) ?>">
+                            <?= $enc->html( $gruppe->getName() ) ?>
+						</a>
+					</li>
+                <?php endforeach; ?>
+			</ul>
+		</div>
+    <?php endforeach; ?>
 
 </section>
 <?php $this->block()->stop(); ?>
