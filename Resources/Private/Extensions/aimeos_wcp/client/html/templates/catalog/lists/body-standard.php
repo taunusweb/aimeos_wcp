@@ -78,7 +78,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
 
 
     <?php if( $this->get( 'listNodes', [] ) !== [] ) : ?>
-        <h1 class="mb-2"><strong>Modelle</strong> zu Ihrer Suche (insgesamt: <?= $enc->html( $this->get( 'listNodesTotal', 0 ) ) ?></h1>
+        <h1 class="mb-2"><strong>Modelle</strong> zu Ihrer Suche (<?= $enc->html( $this->get( 'listNodesTotal', 0 ) ) ?> Modelle)</h1>
         <div class="bg-extra-light p-2 mb-3">
             <div class="catalog-filter-wcp d-flex flex-wrap  align-content-center mb-3 slick-responsive">
                 <?php foreach( $this->get( 'listNodes', [] ) as $item ) : ?>
