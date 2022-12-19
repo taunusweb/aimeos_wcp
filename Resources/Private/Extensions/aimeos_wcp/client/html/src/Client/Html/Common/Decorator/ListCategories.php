@@ -12,6 +12,7 @@ class ListCategories
 
 		if( $text = $view->param( 'f_search' ) )
 		{
+			$total = 0;
 			$cntl = \Aimeos\Controller\Frontend::create( $this->getContext(), 'catalog' );
 
 			foreach( explode( ' ', $text ) as $str )
@@ -27,8 +28,9 @@ class ListCategories
 			$view->listNodes = $cntl->uses( ['media'] )
 				->compare( '>', 'catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")', 0 )
 				->sort( '-sort:catalog:relevance("' . str_replace( ['"', ','], ' ', $text ) . '")' )->sort( 'catalog.label' )
-				->slice( 0, 100 )->search();
-		}
+				->slice( 0, 100 )->search( $total );
+			$view->listNodesTotal = $total;
+			}
 
 		return $view;
 	}
