@@ -116,7 +116,7 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
 
     <?php if( ( $searchText = $this->param( 'f_search', null ) ) != null ) : ?>
         <div class="list-search">
-
+			<h2 class="mb-2"><strong>Artikel</strong> zu Ihrer Suche</h2>
             <?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
                 <?= $enc->html( sprintf(
                     $this->translate(
