@@ -20,7 +20,7 @@ return [
 	'index' => [
 		'manager' => [
 			'chunksize' => 100,
-			'name' => 'Solr',
+			'name' => 'Weber',
 			'domains' => [
 				'catalog' => 'catalog',
 				'attribute' => 'attribute',
