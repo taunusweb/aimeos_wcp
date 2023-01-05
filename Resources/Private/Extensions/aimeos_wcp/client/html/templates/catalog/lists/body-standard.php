@@ -66,63 +66,87 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
 
 ?>
 <section class="aimeos catalog-list <?= $enc->attr( $this->get( 'listCatPath', map() )->getConfigValue( 'css-class', '' )->join( ' ' ) ) ?>"
-         data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
+		 data-jsonurl="<?= $enc->attr( $this->url( $optTarget, $optCntl, $optAction, [], [], $optConfig ) ); ?>">
 
     <?php if( isset( $this->listErrorList ) ) : ?>
-        <ul class="error-list">
+		<ul class="error-list">
             <?php foreach( (array) $this->listErrorList as $errmsg ) : ?>
-                <li class="error-item"><?= $enc->html( $errmsg ); ?></li>
+				<li class="error-item"><?= $enc->html( $errmsg ); ?></li>
             <?php endforeach; ?>
-        </ul>
+		</ul>
     <?php endif; ?>
 
+    <?php if( ( $searchText = $this->param( 'f_search', null ) ) != null ) : ?>
+		<div class="mb-3">
+            <?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
+                <?= $enc->html( sprintf(
+                    $this->translate(
+                        'client',
+                        '<h1>Ihr Sucheregbnis für <span class="searchstring">"%1$s"</span></h1>',
+                        '<h1>Ihr Sucheregbnis für <span class="searchstring">"%1$s"</span></h1>',
+                        $total
+                    ),
+                    $searchText,
+                    $total
+                ), $enc::TRUST ); ?>
+            <?php else : ?>
+                <?= $enc->html( sprintf(
+                    $this->translate(
+                        'client',
+                        'No articles found for <span class="searchstring">"%1$s"</span>. Please try again with a different keyword.'
+                    ),
+                    $searchText
+                ), $enc::TRUST ); ?>
+            <?php endif; ?>
+		</div>
+    <?php endif; ?>
 
     <?php if( $this->get( 'listNodes', [] ) !== [] ) : ?>
-        <h1 class="mb-2"><strong>Modelle</strong> zu Ihrer Suche (<?= $enc->html( $this->get( 'listNodesTotal', 0 ) ) ?> Modelle)</h1>
-        <div class="bg-extra-light p-2 mb-3">
-            <div class="catalog-filter-wcp d-flex flex-wrap  align-content-center mb-3 slick-responsive">
-                <?php foreach( $this->get( 'listNodes', [] ) as $item ) : ?>
-                    <?php if( $item->getStatus() > 0 ) : ?>
-                        <?php $id = $item->getId(); $config = $item->getConfig(); ?>
-                        <?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; unset( $params['f_search'] ); ?>
-                        <?php $class = ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
-                        <div class="<?= $level; ?> <?= $item->getLevel(); ?>  cat-item p-2 catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
-                            <a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
-                                --><div class="media-list"><!--
+		<h2 class="mb-2"><strong>Modelle</strong> zu Ihrer Suche (<?= $enc->html( $this->get( 'listNodesTotal', 0 ) ) ?>)</h2>
+		<div class="bg-extra-light p-2 mb-3">
+			<div class="catalog-filter-wcp d-flex flex-wrap  align-content-center mb-3 swiper mySwiper">
+				<div class="swiper-wrapper">
+                    <?php foreach( $this->get( 'listNodes', [] ) as $item ) : ?>
+                        <?php if( $item->getStatus() > 0 ) : ?>
+                            <?php $id = $item->getId(); $config = $item->getConfig(); ?>
+                            <?php $params['f_name'] = $item->getName( 'url' ); $params['f_catid'] = $id; unset( $params['f_search'] ); ?>
+                            <?php $class = ' catcode-' . $item->getCode() . ( isset( $config['css-class'] ) ? ' ' . $config['css-class'] : '' ); ?>
+							<div class="<?= $level; ?> <?= $item->getLevel(); ?> swiper-slide cat-item p-2 catid-<?= $enc->attr( $id . $class ); ?>" data-id="<?= $id; ?>" >
+								<a class="cat-item" href="<?= $enc->attr( $this->url( ( $item->getTarget() ?: $target ), $controller, $action, $params, [], $config ) ); ?>"><!--
+									--><div class="media-list"><!--
 
-                                    <?php foreach( $item->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
-                                        <?= '-->' . $this->partial(
-                                        $this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
-                                        array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
-                                    ) . '<!--'; ?>
-                                    <?php endforeach; ?>
+										<?php foreach( $item->getRefItems( 'media', 'default', 'default' ) as $mediaItem ) : ?>
+											<?= '-->' . $this->partial(
+                                            $this->config( 'client/html/common/partials/media', 'common/partials/media-standard' ),
+                                            array( 'item' => $mediaItem, 'boxAttributes' => array( 'class' => 'media-item' ) )
+                                        ) . '<!--'; ?>
+										<?php endforeach; ?>
 
-                                --></div><!--
-                                --><span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ); ?></span><!--
-                            --></a>
-                        </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
+									--></div><!--
+									--><span class="cat-name"><?= $enc->html( $item->getName(), $enc::TRUST ); ?></span><!--
+								--></a>
+							</div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+				</div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</div>
     <?php endif ?>
 
 
     <?= $this->block()->get( 'catalog/lists/promo' ); ?>
 
 
-
-
-
     <?php if( ( $searchText = $this->param( 'f_search', null ) ) != null ) : ?>
-        <div class="list-search">
-			<h2 class="mb-2"><strong>Artikel</strong> zu Ihrer Suche</h2>
+		<div class="list-search">
             <?php if( ( $total = $this->get( 'listProductTotal', 0 ) ) > 0 ) : ?>
                 <?= $enc->html( sprintf(
                     $this->translate(
                         'client',
-                        'Search result for <span class="searchstring">"%1$s"</span> (%2$d article)',
-                        'Search result for <span class="searchstring">"%1$s"</span> (%2$d articles)',
+                        '<h2 class="mb-2"><strong>Artikel</strong> zu Ihrer Suche (%2$d)</h2>',
+                        '<h2 class="mb-2"><strong>Artikel</strong> zu Ihrer Suche (%2$d)</h2>',
                         $total
                     ),
                     $searchText,
@@ -138,10 +162,8 @@ if( $this->get( 'listProductTotal', 0 ) > 1 && $this->config( 'client/html/catal
                 ), $enc::TRUST ); ?>
             <?php endif; ?>
 
-        </div>
+		</div>
     <?php endif; ?>
-
-    <?= $pagination; ?>
 
     <?= $this->block()->get( 'catalog/lists/items' ); ?>
 
