@@ -37,5 +37,5 @@ foreach( $this->get( 'orders', [] ) as $order )
         $countryId,
         map( $base->getService( 'delivery' ) )->getCode()->first(),
         map( $base->getService( 'payment' ) )->getCode()->first(),
-    ] ) . '"' );
+    ] ) . '"' . PHP_EOL );
 }
