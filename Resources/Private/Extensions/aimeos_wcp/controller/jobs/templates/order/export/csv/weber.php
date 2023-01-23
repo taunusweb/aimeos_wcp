@@ -34,7 +34,7 @@ foreach( $this->get( 'orders', [] ) as $order )
         $order->getTimeCreated(),
         $price->getValue(),
         $price->getCosts(),
-        $addr->getCountryId(),
+        $countryId,
         map( $base->getService( 'delivery' ) )->getCode()->first(),
         map( $base->getService( 'payment' ) )->getCode()->first(),
     ] ) . '"' );
