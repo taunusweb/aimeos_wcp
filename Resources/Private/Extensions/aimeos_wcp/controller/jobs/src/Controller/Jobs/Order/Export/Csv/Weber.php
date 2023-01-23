@@ -74,8 +74,8 @@ class Weber
 			}
 			catch( \Exception $e )
 			{
-				$msg = 'Order export error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
-				$logger->log( $msg, Log::ERR, 'order/export/csv' );
+				$str = 'Order export error: ' . $e->getMessage() . "\n" . $e->getTraceAsString();
+				$logger->log( $str, Log::ERR, 'order/export/csv' );
 			}
 
 			$mq->del( $msg );
