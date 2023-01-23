@@ -11,7 +11,7 @@ use \Aimeos\MW\Logger\Base as Log;
  * @package Controller
  * @subpackage Jobs
  */
-class Standard
+class Weber
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
