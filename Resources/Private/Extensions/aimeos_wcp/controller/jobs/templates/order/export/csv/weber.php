@@ -33,7 +33,7 @@ foreach( $this->get( 'orders', [] ) as $order )
         $customer->getCode(),
         $order->getTimeCreated(),
         $price->getValue(),
-        $price->getCodsts(),
+        $price->getCosts(),
         $addr->getCountryId(),
         map( $base->getService( 'delivery' ) )->getCode()->first(),
         map( $base->getService( 'payment' ) )->getCode()->first(),
