@@ -31,6 +31,7 @@ foreach( $this->get( 'orders', [] ) as $order )
     echo( '"'. join( '","', [
         $order->getId(),
         $customer->getCode(),
+        $order->getStatusPayment(),
         $order->getTimeCreated(),
         $price->getValue(),
         $price->getCosts(),

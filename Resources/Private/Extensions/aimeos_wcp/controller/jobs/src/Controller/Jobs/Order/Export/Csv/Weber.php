@@ -110,6 +110,12 @@ class Weber
 			throw new \Aimeos\Controller\Jobs\Exception( 'Unable to create temporary file' );
 		}
 
+		$header = '"Bestellnummer","Kunde","Zahlungsstatus","Bestelldatum","Bestellwert","Versandkosten","Lieferland","Versandart","Zahlungsart"' . PHP_EOL;
+
+		if( fwrite( $fh, $header ) === false ) {
+			throw new \Aimeos\Controller\Jobs\Exception( 'Unable to write to temporary file' );
+		}
+
 		$manager = \Aimeos\MShop::create( $lcontext, 'order' );
 		$ref = ['customer', 'order/base', 'order/base/address', 'order/base/coupon', 'order/base/product', 'order/base/service'];
 
