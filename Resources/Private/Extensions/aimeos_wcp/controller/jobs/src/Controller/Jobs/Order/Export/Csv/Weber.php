@@ -15,7 +15,7 @@ class Weber
 	extends \Aimeos\Controller\Jobs\Base
 	implements \Aimeos\Controller\Jobs\Iface
 {
-	private static $num = 0;
+	private static $num = 1;
 
 
 	/**
@@ -134,9 +134,10 @@ class Weber
 		}
 		while( $count === $search->getLimit() );
 
+		rewind( $fh );
 		$path = $this->moveFile( $lcontext, $fh );
-		$this->addJob( $lcontext, $path );
 
+		$this->addJob( $lcontext, $path );
 		fclose( $fh );
 	}
 
@@ -181,7 +182,7 @@ class Weber
 	 */
 	protected function moveFile( \Aimeos\MShop\Context\Item\Iface $context, $fh ) : string
 	{
-		$filename = 'order_export-' . date( 'Ymd_His' ) . '-' . self::$num++;
+		$filename = 'order_export-' . date( 'Ymd_His' ) . '-' . self::$num++ . '.csv';
 		$context->getFileSystemManager()->get( 'fs-admin' )->writes( $filename, $fh );
 
 		return $filename;
