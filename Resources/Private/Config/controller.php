@@ -28,5 +28,14 @@ return [
         'basket' => [
             'name' => 'Weber'
         ]
+    ],
+    'jobs' => [
+        'order' => [
+            'export' => [
+                'csv' => [
+                    'name' => 'Weber'
+                ]
+            ]
+        ]
     ]
 ];
