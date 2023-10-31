@@ -61,6 +61,7 @@ $prodItems = $this->get('detailProductItems', []);
 $propMap = $subPropDeps = $propItems = [];
 $attrMap = $subAttrDeps = $mediaItems = [];
 $dimensions = "";
+$bristle = "";
 if (isset($this->detailProductItem)) {
 
     $listAttributes = $this->detailProductItem->getListItems('attribute');
@@ -68,6 +69,11 @@ if (isset($this->detailProductItem)) {
         if (($attrItem = $attrListItems->getRefItem()) !== null) {
             if ($attrItem->getType() == "Abmessungen") {
                 $dimensions = $attrItem->getLabel();
+            }
+        }
+        if (($attrItem = $attrListItems->getRefItem()) !== null) {
+            if ($attrItem->getType() == "Borste") {
+                $bristle = $attrItem->getLabel();
             }
         }
     }
@@ -165,6 +171,12 @@ if (isset($this->detailProductItem)) {
 							<span class="value"><?= $enc->html($dimensions); ?></span>
 						</p>
                     <?php endif ?>
+                    <?php if ($bristle !== ""): ?>
+						<p class="code">
+							<span class="name"><?= $enc->html($this->translate('client', 'Borste:'), $enc::TRUST); ?></span>
+							<span class="value"><?= $enc->html($bristle); ?></span>
+						</p>
+                    <?php endif ?>
                     <?php if ($oem): ?>
 						<p class="code">
 							<span class="name"><?= $enc->html($this->translate('client', 'wcp_oem'), $enc::TRUST); ?></span>
@@ -183,7 +195,7 @@ if (isset($this->detailProductItem)) {
 						<div class="price-list col-10" data-prodid="<?= $enc->attr($this->detailProductItem->getId()); ?>" data-prodcode="<?= $enc->attr($this->detailProductItem->getCode()); ?>">
                             <?php if( $this->get( 'contextUserId' ) ) : ?>
 								<div class="articleitem price-item listprice row">
-									<span class="label costs col-4" style="display:block;"><?= $enc->html( $this->translate('client', 'List price' ) ) ?></span>
+									<span class="label costs col-5" style="display:block;"><?= $enc->html( $this->translate('client', 'List price' ) ) ?></span>
                                     <?php  if ($priceItem = $this->detailProductItem->getRefItems('price', null, 'default')->first()) : ?>
 										<span class="value text-right col-3 text-nowrap">
                                         <?= $enc->html(sprintf($this->translate('client/code', 'price:default'), $this->number($priceItem->getValue(), $priceItem->getPrecision()), $this->translate('currency', $priceItem->getCurrencyId())), $enc::TRUST); ?>
@@ -314,10 +326,13 @@ if (isset($this->detailProductItem)) {
 									   name="<?= $enc->attr($this->formparam(array('b_prod', 0, 'prodid'))); ?>"
 									   value="<?= $enc->attr($this->detailProductItem->getId()); ?>"
 								/>
-								<input type="number" class="form-control input-lg" <?= $disabled ?>
-									   name="<?= $enc->attr($this->formparam(array('b_prod', 0, 'quantity'))); ?>"
-									   min="1" max="2147483647" maxlength="10" step="1" required="required" value="1"
-								/>
+								<input type="number" class="form-control input-lg" <?= !$this->detailProductItem->isAvailable() ? 'disabled' : '' ?>
+									   name="<?= $enc->attr( $this->formparam( ['b_prod', 0, 'quantity'] ) ) ?>"
+									   step="<?= $this->detailProductItem->getScale() ?>"
+									   min="<?= $this->detailProductItem->getScale() ?>" max="2147483647"
+									   value="<?= $this->detailProductItem->getScale() ?>" required="required"
+									   title="<?= $enc->attr( $this->translate( 'client', 'Quantity' ) ) ?>"
+								>
 								<button class="btn btn-primary btn-lg" type="submit" value="" <?= $disabled ?> >
                                     <?= $enc->html($this->translate('client', 'Add to basket'), $enc::TRUST); ?>
 								</button>
